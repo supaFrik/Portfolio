@@ -5,10 +5,8 @@ if (typeof gsap === 'undefined') {
 } else {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Find the marquee container and ensure there's a track with repeated items
   const marqueeWrap = document.querySelector('.marquee-wrap');
   if (marqueeWrap) {
-    // Ensure we have a track element
     let track = marqueeWrap.querySelector('.marquee-track');
     const source = marqueeWrap.querySelector('p');
     if (!track) {
@@ -21,7 +19,6 @@ if (typeof gsap === 'undefined') {
       marqueeWrap.appendChild(track);
     }
 
-    // If there's only one child, duplicate several times to make the loop smooth
     const items = Array.from(track.children);
     if (items.length === 1) {
       for (let i = 0; i < 4; i++) {
@@ -37,7 +34,6 @@ if (typeof gsap === 'undefined') {
       paddingRight: 40,
     });
 
-    // Optional: speed up when the user scrolls over the hero
     let speedTween;
     ScrollTrigger.create({
       trigger: '.rail',

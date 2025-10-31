@@ -1,4 +1,4 @@
-const SCROLL_DURATION_MS = 1600; // change to 1800 for noticeably slower scroll
+const SCROLL_DURATION_MS = 1600; 
 
 			(function(){
 				if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -7,7 +7,7 @@ const SCROLL_DURATION_MS = 1600; // change to 1800 for noticeably slower scroll
 
 				function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
 
-				let active = null; // holds animation state so it can be cancelled
+				let active = null; 
 
 				function smoothScrollTo(targetY, duration = SCROLL_DURATION_MS){
 					if (typeof targetY !== 'number') return Promise.resolve();
@@ -55,7 +55,7 @@ const SCROLL_DURATION_MS = 1600; // change to 1800 for noticeably slower scroll
 						const target = document.getElementById(id);
 						if (target) {
 							e.preventDefault();
-							if (active) { /* optionally cancel previous animation */ active = null; }
+							if (active) { active = null; }
 							smoothScrollTo(getTargetYForElement(target)).then(() => {
 								try { history.pushState(null, '', href); } catch (err) { /* ignore */ }
 							});

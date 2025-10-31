@@ -15,9 +15,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 		<style>
-			/* Smooth scrolling is handled by the JS below so we can control duration/easing.
-			   If users prefer reduced motion the script will respect that and skip animation. */
-			/* Use Inter font sitewide */
 			body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif; }
 			.marquee-wrap { position: relative; overflow: hidden; }
 			.marquee-track {
@@ -38,47 +35,32 @@
 			}
 
 			.about-heading {
-				font-size: 3.6rem; /* large display heading */
+				font-size: 3.6rem;
 				line-height: 1.02;
 				font-weight: 300;
-				color: #0f172a; /* gray-900 */
+				color: #0f172a; 
 			}
 
-			/* per-word hidden state for staggered reveal */
 			.about-word {
-				display: inline-block; /* keep words inline but animatable */
+				display: inline-block; 
 				transform: translateY(18px);
 				opacity: 0;
 				will-change: transform, opacity;
-				margin-right: 0.28rem; /* small gap between words */
+				margin-right: 0.28rem;
 			}
-
-
-			.about-panel p { max-width: 18rem; color: #111827; }
-
-			.about-circle {
-				width: 180px;
-				height: 180px;
-				background: #1f2937; /* gray-800 */
-				border-radius: 9999px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				color: #f8fafc; /* near-white */
-				font-weight: 500;
-			}
-
 			@media (prefers-reduced-motion: reduce) {
 				.marquee-track { animation: none; transform: none; }
 			}
 		</style>
 	</head>
 	<body class="antialiased text-white bg-gray-100">
-
 		<!-- Hero -->
 		<section class="rail relative h-screen w-full bg-gray-300">
-			<img src="" />
-			<div class="absolute inset-0 bg-gray-800/50"></div>
+			<video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+				<source src="./static/vid/0_Pink_Red_3840x2160.mp4" type="video/mp4">
+				<img src="./static/vid/fallback.jpg" alt="Background" class="w-full h-full object-cover"/>
+				Your browser does not support the video tag.
+			</video>
 			<!-- Top navigation -->
 			<header class="absolute top-6 left-6 right-6 z-20 flex items-center justify-between">
 				<div class="text-sm text-white/90">© Code by VietTrinh</div>
@@ -90,8 +72,8 @@
 			</header>
 
 			<div class="absolute z-20 right-12 top-1/3 max-w-xs text-right">
-				<div class="text-lg text-white/90">Freelance</div>
-				<div class="mt-4 text-2xl font-medium">Designer &amp; Developer</div>
+				<div class="text-lg text-white/90">HANUER</div>
+				<div class="mt-4 text-2xl font-medium">Design &amp; Developer</div>
 			</div>
 
 			<div class="absolute inset-0 z-10 flex items-center justify-start">
@@ -105,40 +87,54 @@
 				</div>
 			</div>
 
-			<div class="absolute z-20 right-16 bottom-20 text-white/90">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5-5-5" />
-				</svg>
-			</div>
 		</section>
 
-        <section id="about" class="min-h-screen p-12 bg-white text-gray-900">
-			<div class="about-grid max-w-6xl mx-auto">
+		<section id="about" class="min-h-screen p-12 bg-white text-gray-900">
+			<div class="about-grid max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center pt-36">
 				<div>
-					<h2 class="about-heading">Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.</h2>
+					<h2 class="about-heading text-3xl md:text-5xl leading-tight font-light">Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.</h2>
 				</div>
-				<div class="about-panel text-right">
-					<p class="mb-8">The combination of my passion for design, code &amp; interaction positions me in a unique place in the web design world.</p>
+				<div class="about-panel text-right flex flex-col justify-center w-full">
+					<p class="mb-6 text-base md:text-lg break-words">The combination of my passion for design, code &amp; interaction positions me in a unique place in the web design world.</p>
 					<div class="flex justify-end">
-						<div class="about-circle">About me</div>
+						<button class="about-circle w-36 h-36 md:w-44 md:h-44">
+							<p class="text-white">About me</p>
+						</button>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<main class="p-12 bg-white text-gray-800">
-			<h2 class="text-2xl font-bold mb-4">Next sections go here</h2>
-			<p class="max-w-2xl">Replace the background image URL with your own asset (or a relative path) and tweak the font sizes in the marquee to match your preferred scale.</p>
-		</main>
+		<!-- Projects -->
+		<main id="work" class="p-12 bg-white text-gray-800">
+			<div class="project-card projects-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0" data-index="0" data-src="project1.jpg" data-color="#F5F5F7">
+				<h2 class="text-2xl md:text-3xl font-bold">Nike Ecommerce Web Application</h2>
+				<p class="text-sm md:text-base">Full-stack project.</p>
+			</div>
+			<div class="project-card projects-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0" data-index="1" data-src="project2.jpg" data-color="#FFF6EA">
+				<h2 class="text-2xl md:text-3xl font-bold">To-do List</h2>
+				<p class="text-sm md:text-base">OOP, SQL, CRUD, REST</p>
+			</div>
+			<div class="project-card projects-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-b-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0" data-index="2" data-src="project3.jpg" data-color="#F0F9FF">
+				<h2 class="text-2xl md:text-3xl font-bold">Portfolio</h2>
+				<p class="text-sm md:text-base">HTML, Tailwind CSS, GSAP animations, Vanilla JavaScript.</p>
+			</div>
 
-		<section id="work" class="min-h-screen p-12 bg-gray-50 text-gray-900">
-			<h2 class="text-3xl font-bold mb-4">Work</h2>
-			<p>Projects and case studies go here.</p>
-		</section>
+			<div id="hoverModalRoot">
+				<div class="modalContainer" id="modalContainer" aria-hidden="true">
+					<div class="modalSlider" id="modalSlider">
+						<!-- JS -->
+					</div>
+				</div>
+				<div class="cursor" id="hoverCursor"></div>
+				<div class="cursorLabel" id="hoverCursorLabel">View</div>
+			</div>
+		</main>
 
 		<section id="contact" class="min-h-screen p-12 bg-gray-50 text-gray-900">
 			<h2 class="text-3xl font-bold mb-4">Contact</h2>
 			<p>Contact info and form placeholder.</p>
 		</section>
+		<script src="./static/js/project-hover.js" defer></script>
 	</body>
 </html>

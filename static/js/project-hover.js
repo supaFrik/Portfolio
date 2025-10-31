@@ -10,14 +10,21 @@
     const hoverCursorLabel = document.getElementById('hoverCursorLabel');
 
     projects.forEach((el, i) => {
-        const src = el.getAttribute('data-src') || '';
+        let src = el.getAttribute('data-src') || '';
         const color = el.getAttribute('data-color') || '#fff';
+
+        if (src && !src.match(/^(https?:)?\/\//) && !src.startsWith('/') ){
+            if (!src.includes('./') && !src.startsWith('static/') && !src.startsWith('img/') && !src.includes('/')){
+                src = `./static/img/${src}`;
+            }
+        }
+        if (src) src = src.split(' ').map(encodeURIComponent).join('%20');
 
         const slide = document.createElement('div');
         slide.className = 'modal';
         slide.style.backgroundColor = color;
         const img = document.createElement('img');
-        img.src = src ? `./images/${src}` : '';
+        img.src = src || '';
         img.alt = el.textContent.trim() || `project-${i}`;
         slide.appendChild(img);
         modalSlider.appendChild(slide);
@@ -63,6 +70,7 @@
     let hideTimer = null;
     const HIDE_DELAY = 180; 
     let isVisible = false;
+    let currentProjectLink = null;
 
     function scheduleHide(){
         if(hideTimer) clearTimeout(hideTimer);
@@ -88,10 +96,34 @@
                 isVisible = true;
             }
             modalSlider.style.top = `${i * -100}%`;
+            currentProjectLink = el.getAttribute('data-link') || null;
         });
         el.addEventListener('mouseleave', () => {
             scheduleHide();
+            currentProjectLink = null;
+        });
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', (ev) => {
+            const link = el.getAttribute('data-link');
+            if (!link) return;
+            window.open(link, '_blank', 'noopener,noreferrer');
+        });
+        el.setAttribute('tabindex', el.getAttribute('tabindex') || '0');
+        el.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' || ev.key === ' ') {
+                ev.preventDefault();
+                const link = el.getAttribute('data-link');
+                if (link) window.open(link, '_blank', 'noopener,noreferrer');
+            }
         });
     });
+
+    if (hoverCursorLabel) {
+        hoverCursorLabel.style.cursor = 'pointer';
+        hoverCursorLabel.addEventListener('click', (e) => {
+            if (!currentProjectLink) return;
+            window.open(currentProjectLink, '_blank', 'noopener,noreferrer');
+        });
+    }
 
 })();

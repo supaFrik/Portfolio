@@ -66,6 +66,9 @@
 					will-change: auto;
 				}
 			}
+			.projects-card {
+			background: transparent;
+			}
             .projects-card:hover {
                 opacity: 0.4;
             }
@@ -138,7 +141,33 @@
 				font-weight: 600;
 			}
 
-			/* Hide modal on small screens */
 			@media (max-width: 768px){
 				.modalContainer, .cursor, .cursorLabel{ display: none; }
 			}
+
+			#float-gallery {
+				background: transparent;
+			}
+	.float-gallery-root .plane{
+		z-index: 10;
+		position: absolute;
+		width: 120%;
+		height: 100%;
+	}
+	.float-gallery-root .plane img{
+		position: absolute;
+		will-change: transform;
+		max-width: 40vw;
+	}
+	.float-gallery-root .plane-1 img.fg-img-1{ left: 80%; top: 70%; width: 8vw; transform: rotate(-3deg);}
+	.float-gallery-root .plane-1 img.fg-img-2{ left: 4%; top: 70%; width: 14vw; transform: rotate(3deg);}
+	.float-gallery-root .plane-1 img.fg-img-7{ left: 39%; top: 5%; width: 10vw; transform: rotate(2deg);}
+
+	.float-gallery-root .plane-2 img.fg-img-4{ left: 4%; top: 4%; width: 8vw; transform: rotate(-10deg);}
+	.float-gallery-root .plane-2 img.fg-img-6{ left: 74%; top: 10%; width: 8vw; transform: rotate(12deg);}
+	.float-gallery-root .plane-2 img.fg-img-8{ left: 48%; top: 42%; width: 12vw; transform: rotate(-6deg);}
+
+	@media (max-width: 768px){
+		.float-gallery-root .plane img{ display: none; }
+		#float-gallery{ height: 240px !important; }
+	}

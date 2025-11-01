@@ -103,19 +103,33 @@
             currentProjectLink = null;
         });
         el.style.cursor = 'pointer';
-        el.addEventListener('click', (ev) => {
-            const link = el.getAttribute('data-link');
-            if (!link) return;
-            window.open(link, '_blank', 'noopener,noreferrer');
-        });
-        el.setAttribute('tabindex', el.getAttribute('tabindex') || '0');
-        el.addEventListener('keydown', (ev) => {
-            if (ev.key === 'Enter' || ev.key === ' ') {
-                ev.preventDefault();
+
+        // If the element is an anchor, let native behavior handle clicks.
+        const isAnchor = el.tagName && el.tagName.toLowerCase() === 'a';
+        if (!isAnchor) {
+            el.setAttribute('tabindex', el.getAttribute('tabindex') || '0');
+            el.addEventListener('click', (ev) => {
                 const link = el.getAttribute('data-link');
-                if (link) window.open(link, '_blank', 'noopener,noreferrer');
+                if (!link) return;
+                window.open(link, '_blank', 'noopener,noreferrer');
+            });
+            el.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Enter' || ev.key === ' ') {
+                    ev.preventDefault();
+                    const link = el.getAttribute('data-link');
+                    if (link) window.open(link, '_blank', 'noopener,noreferrer');
+                }
+            });
+        } else {
+            // ensure anchors are focusable and have descriptive labels
+            if (!el.hasAttribute('aria-label')) {
+                try {
+                    const titleEl = el.querySelector('h2');
+                    const titleText = titleEl ? titleEl.textContent.trim() : `project ${i + 1}`;
+                    el.setAttribute('aria-label', `Open ${titleText} in a new tab`);
+                } catch (err) {}
             }
-        });
+        }
     });
 
     if (hoverCursorLabel) {

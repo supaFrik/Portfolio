@@ -12,7 +12,7 @@
     console.debug('[hover-clip] prefers-reduced-motion: skipping');
     return;
   }
-
+  console.debug('[hover-clip] init');
   const rows = Array.from(document.querySelectorAll('.projects-scroll .project-row'));
   if (!rows.length) {
     console.debug('[hover-clip] no project rows found');
@@ -20,35 +20,48 @@
   }
 
   function computeClipForRow(row) {
-    const fg = row.querySelector('h2.project .clip-fg');
-    if (!fg) return;
+    const fgs = Array.from(row.querySelectorAll('.clip-fg'));
+    if (!fgs.length) return;
     const rect = row.getBoundingClientRect();
     const viewportH = window.innerHeight || document.documentElement.clientHeight;
     const centerY = rect.top + rect.height / 2;
     let progress = 1 - (centerY / viewportH);
     progress = Math.min(Math.max(progress, 0), 1);
     const clipPercent = (1 - progress) * 100;
-    fg.style.setProperty('--clip', clipPercent + '%');
-    fg.style.clipPath = `inset(0 ${clipPercent}% 0 0)`;
+    fgs.forEach(fg => {
+      fg.style.setProperty('--clip', clipPercent + '%');
+      fg.style.clipPath = `inset(0 ${clipPercent}% 0 0)`;
+    });
   }
 
-  rows.forEach(row => {
-    const fg = row.querySelector('h2.project .clip-fg');
-    if (!fg) return;
+  // Bind hover to the heading (`h2.project`) so hovering the H2 area reveals the .clip-fg
+  const headings = Array.from(document.querySelectorAll('.projects-scroll .project-row h2.project'));
+  console.debug('[hover-clip] found project headings', headings.length);
+  headings.forEach((heading, idx) => {
+    const row = heading.closest('.project-row');
+    const fgs = Array.from(heading.querySelectorAll('.clip-fg'));
+    if (!fgs.length) return;
 
-    row.addEventListener('mouseenter', () => {
-      fg.style.setProperty('--clip', '0%');
-      fg.style.clipPath = 'inset(0 0% 0 0)';
-      row.classList.add('hovering');
+    heading.addEventListener('mouseenter', () => {
+      console.debug('[hover-clip] heading enter', idx, heading.textContent && heading.textContent.trim());
+      fgs.forEach(fg => {
+        fg.style.setProperty('--clip', '0%');
+        fg.style.clipPath = 'inset(0 0% 0 0)';
+        fg.classList.add('hovering');
+      });
+      heading.classList.add('hovering');
+      if (row) row.classList.add('hovering');
     });
 
-    row.addEventListener('mouseleave', () => {
-      row.classList.remove('hovering');
+    heading.addEventListener('mouseleave', () => {
+      console.debug('[hover-clip] heading leave', idx, heading.textContent && heading.textContent.trim());
+      fgs.forEach(fg => fg.classList.remove('hovering'));
+      heading.classList.remove('hovering');
+      if (row) row.classList.remove('hovering');
       computeClipForRow(row);
     });
   });
 
-  // Recompute on resize/scroll for reasonable fallback behavior
   let raf = 0;
   function recomputeAll() {
     if (raf) cancelAnimationFrame(raf);
@@ -63,6 +76,5 @@
   window.addEventListener('scroll', recomputeAll, { passive: true });
   window.addEventListener('resize', recomputeAll);
 
-  // initial compute
   recomputeAll();
 })();

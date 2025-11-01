@@ -159,13 +159,13 @@
 		will-change: transform;
 		max-width: 40vw;
 	}
-	.float-gallery-root .plane-1 img.fg-img-1{ left: 80%; top: 70%; width: 8vw; transform: rotate(-3deg);}
-	.float-gallery-root .plane-1 img.fg-img-2{ left: 4%; top: 70%; width: 14vw; transform: rotate(3deg);}
+	.float-gallery-root .plane-1 img.fg-img-1{ left: 80%; top: 70%; width: 6vw; transform: rotate(-3deg);}
+	.float-gallery-root .plane-1 img.fg-img-2{ left: 4%; top: 70%; width: 10vw; transform: rotate(3deg);}
 	.float-gallery-root .plane-1 img.fg-img-7{ left: 39%; top: 5%; width: 10vw; transform: rotate(2deg);}
 
 	.float-gallery-root .plane-2 img.fg-img-4{ left: 4%; top: 4%; width: 8vw; transform: rotate(-10deg);}
-	.float-gallery-root .plane-2 img.fg-img-6{ left: 74%; top: 10%; width: 8vw; transform: rotate(12deg);}
-	.float-gallery-root .plane-2 img.fg-img-8{ left: 48%; top: 42%; width: 12vw; transform: rotate(-6deg);}
+	.float-gallery-root .plane-2 img.fg-img-6{ left: 74%; top: 10%; width: 6vw; transform: rotate(12deg);}
+	.float-gallery-root .plane-2 img.fg-img-8{ left: 48%; top: 42%; width: 14vw; transform: rotate(-6deg);}
 
 	@media (max-width: 768px){
 		.float-gallery-root .plane img{ display: none; }
@@ -174,10 +174,11 @@
 
 #projectDescription { transition: opacity 0.3s ease; }
 @media (prefers-reduced-motion: reduce) {
-	.projects-scroll h2.project span:first-child { clip-path: none !important; --clip: 0%; }
+	.projects-scroll .clip-fg { clip-path: none !important; --clip: 0%; }
 }
 
-.projects-scroll .project-row.hovering h2.project span:first-child {
+.projects-scroll .project-row.hovering .clip-fg,
+.projects-scroll .clip-fg.hovering {
 	--clip: 0%;
 	clip-path: inset(0 0% 0 0);
 }
@@ -246,14 +247,51 @@ body {
 	will-change: transform, opacity;
 	margin-right: .28rem;
 }
-
-.clip-fg {
-	--clip: 100%;
-	display: inline-block;
-	clip-path: inset(0 var(--clip) 0 0);
-	transition: clip-path .35s cubic-bezier(.4,0,.2,1);
-	will-change: clip-path;
-}
 @media (prefers-reduced-motion: reduce) {
 	.clip-fg { clip-path: none !important; --clip: 0%; }
+}
+
+/* --- Compact Skills Section Overrides --- */
+#skills-projects {
+	padding-top: 1.25rem; /* was larger */
+	padding-bottom: 1.25rem;
+}
+
+/* Smaller headings inside skills section */
+#skills-projects h2.project,
+#skills-projects .double-layer.project {
+	font-size: clamp(2.2rem,6vw,4.5rem);
+	line-height: clamp(2.1rem,5.8vw,4.3rem);
+}
+
+/* Reduce row height & vertical spacing */
+#skills-projects .project-row {
+	min-height: 88px; /* down from ~120/160 */
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+}
+@media (min-width: 768px) {
+	#skills-projects .project-row {
+		min-height: 120px; /* still smaller than previous 160 */
+		padding-top: 0.9rem;
+		padding-bottom: 0.9rem;
+	}
+}
+
+/* Description panel spacing tighten */
+#skills-projects .desc-panel .desc-inner h2,
+#skills-projects .desc-panel .desc-inner p {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+/* Slightly smaller clipped foreground span font if you want separate control */
+#skills-projects .clip-fg {
+	font-size: inherit; /* keep heading scale; modify here if needed */
+}
+
+/* Optional: shrink desc text */
+#skills-projects .desc-panel p {
+	font-size: 0.85rem;
+	line-height: 1.25rem;
 }

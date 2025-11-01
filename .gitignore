@@ -1,0 +1,19 @@
+# Ignore video assets and large media
+static/vid/
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Node and build outputs
+node_modules/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

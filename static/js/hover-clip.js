@@ -34,7 +34,6 @@
     });
   }
 
-  // Bind hover to the heading (`h2.project`) so hovering the H2 area reveals the .clip-fg
   const headings = Array.from(document.querySelectorAll('.projects-scroll .project-row h2.project'));
   console.debug('[hover-clip] found project headings', headings.length);
   headings.forEach((heading, idx) => {
@@ -46,7 +45,6 @@
       console.debug('[hover-clip] heading enter', idx, heading.textContent && heading.textContent.trim());
       fgs.forEach(fg => {
         fg.style.setProperty('--clip', '0%');
-        fg.style.clipPath = 'inset(0 0% 0 0)';
         fg.classList.add('hovering');
       });
       heading.classList.add('hovering');

@@ -14,43 +14,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-		<style>
-			body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif; }
-			.marquee-wrap { position: relative; overflow: hidden; }
-			.marquee-track {
-				display: inline-block;
-				white-space: nowrap;
-				will-change: transform;
-				animation: slide-right linear infinite;
-				animation-duration: 18s;
-			}
-			.marquee-track > * { display: inline-block; padding-right: 4rem; }
 
-			.about-grid {
-				display: grid;
-				grid-template-columns: 1fr 420px;
-				column-gap: 6rem;
-				align-items: center;
-			}
-
-			.about-heading {
-				font-size: 3.6rem;
-				line-height: 1.02;
-				font-weight: 300;
-				color: #0f172a; 
-			}
-
-			.about-word {
-				display: inline-block; 
-				transform: translateY(18px);
-				opacity: 0;
-				will-change: transform, opacity;
-				margin-right: 0.28rem;
-			}
-			@media (prefers-reduced-motion: reduce) {
-				.marquee-track { animation: none; transform: none; }
-			}
-		</style>
 	</head>
 	<body class="antialiased text-white bg-gray-100">
 		<!-- Menu -->
@@ -69,8 +33,8 @@
 			</header>
 
 			<div class="absolute z-20 right-12 top-1/3 max-w-xs text-right">
-				<div class="text-lg text-white/90">HANUER</div>
-				<div class="mt-4 text-2xl font-medium">Design &amp; Developer</div>
+				<div class="text-lg text-white/90 fade-on-scroll fade-delay-1">HANUER</div>
+				<div class="mt-4 text-2xl font-medium fade-on-scroll fade-delay-2">Design &amp; Developer</div>
 			</div>
 
 			<div class="absolute inset-0 z-10 flex items-center justify-start">
@@ -102,14 +66,14 @@
 			</div>
 		</section>
 		<section id="about" class="min-h-screen p-12 bg-white text-gray-900">
-			<div class="about-grid max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center pt-36">
+			<div class="about-grid  mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center pt-36">
 				<div>
-					<h2 class="about-heading text-3xl md:text-5xl leading-tight font-light">Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.</h2>
+					<h2 class="about-heading text-3xl md:text-5xl leading-tight font-light fade-on-scroll">Helping brands to stand out in the digital era. Together we will set the new status quo. No nonsense, always on the cutting edge.</h2>
 				</div>
 				<div class="about-panel text-right flex flex-col justify-center w-full">
-					<p class="mb-6 text-base md:text-lg break-words">The combination of my passion for design, code &amp; interaction positions me in a unique place in the web design world.</p>
+					<p class="mb-6 text-base md:text-lg break-words fade-on-scroll fade-delay-1">The combination of my passion for design, code &amp; interaction positions me in a unique place in the web design world.</p>
 					<div class="flex justify-end">
-						<button class="about-circle w-36 h-36 md:w-44 md:h-44 z-[100]">
+						<button class="about-circle w-36 h-36 md:w-44 md:h-44 z-[100] fade-on-scroll fade-delay-2">
 							<p class="text-white">About me</p>
 						</button>
 					</div>
@@ -119,17 +83,17 @@
 
 		<!-- Projects -->
 		<main id="work" class="py-20 px-12 bg-white text-gray-800 bg-transparent">
-			<a class="projects-card project-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0" data-index="0" data-src="./static/img/Nike Ecommerce.jpg" data-color="#8d99ae" data-link="https://github.com/supaFrik/Nike-e-commerce-web-application" href="https://github.com/supaFrik/Nike-e-commerce-web-application" target="_blank" rel="noopener noreferrer">
-				<h2 class="text-2xl md:text-3xl font-bold">Nike Ecommerce Web Application</h2>
-				<p class="text-sm md:text-base">Full-stack project.</p>
+			<a class="projects-card project-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0 fade-on-scroll" data-index="0" data-src="./static/img/Nike Ecommerce.jpg" data-color="#8d99ae" data-link="https://github.com/supaFrik/Nike-e-commerce-web-application" href="https://github.com/supaFrik/Nike-e-commerce-web-application" target="_blank" rel="noopener noreferrer">
+				<h2 class="text-2xl md:text-3xl font-bold fade-on-scroll fade-delay-1">Nike Ecommerce Web Application</h2>
+				<p class="text-sm md:text-base fade-on-scroll fade-delay-2">Full-stack project.</p>
 			</a>
-			<a class="projects-card project-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0" data-index="1" data-src="./static/img/todo.png" data-color="#edf2f4" data-link="https://github.com/supaFrik/todo-list" href="https://github.com/supaFrik/todo-list" target="_blank" rel="noopener noreferrer">
-				<h2 class="text-2xl md:text-3xl font-bold">To-do List</h2>
-				<p class="text-sm md:text-base">OOP, SQL, CRUD, REST</p>
+			<a class="projects-card project-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0 fade-on-scroll" data-index="1" data-src="./static/img/todo.png" data-color="#edf2f4" data-link="https://github.com/supaFrik/todo-list" href="https://github.com/supaFrik/todo-list" target="_blank" rel="noopener noreferrer">
+				<h2 class="text-2xl md:text-3xl font-bold fade-on-scroll fade-delay-1">To-do List</h2>
+				<p class="text-sm md:text-base fade-on-scroll fade-delay-2">OOP, SQL, CRUD, REST</p>
 			</a>
-			<a class="projects-card project-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-b-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0" data-index="2" data-src="./static/img/portfolio.png" data-color="#ef233c" data-link="https://github.com/supaFrik/Portfolio" href="https://github.com/supaFrik/Portfolio" target="_blank" rel="noopener noreferrer">
-				<h2 class="text-2xl md:text-3xl font-bold">Portfolio</h2>
-				<p class="text-sm md:text-base">HTML, Tailwind CSS, GSAP animations, Vanilla JavaScript.</p>
+			<a class="projects-card project-card cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-t-2 border-b-2 border-gray-300 py-8 md:py-12 gap-4 md:gap-0 fade-on-scroll" data-index="2" data-src="./static/img/portfolio.png" data-color="#ef233c" data-link="https://github.com/supaFrik/Portfolio" href="https://github.com/supaFrik/Portfolio" target="_blank" rel="noopener noreferrer">
+				<h2 class="text-2xl md:text-3xl font-bold fade-on-scroll fade-delay-1">Portfolio</h2>
+				<p class="text-sm md:text-base fade-on-scroll fade-delay-2">HTML, Tailwind CSS, GSAP animations, Vanilla JavaScript.</p>
 			</a>
 
 			<div id="hoverModalRoot">
@@ -143,11 +107,140 @@
 			</div>
 		</main>
 
+		<!-- Skills -->
+		<section id="skills-projects" class="py-12 md:py-24 bg-white text-gray-900">
+			<div class="projects-scroll border-t border-[rgba(183,171,152,0.25)]  mx-auto" aria-label="Highlighted projects">
+				<div class="project-row border-b border-[rgba(183,171,152,0.25)] relative pl-4 md:pl-[4%] cursor-default overflow-hidden py-8 md:py-12 min-h-[120px] md:min-h-[160px]" data-desc="Working on the Next-Generation HMI Experience without no driving experience.">
+					<h2 class="project double-layer m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase relative">
+						<span class="clip-fg inline-block text-[#000000] z-20">
+						Frontend
+					</span>
+						<span aria-hidden="true" class="text-[#000000] absolute top-0 left-0 opacity-40">
+							Frontend
+						</span>
+						</h2>
+					<div class="desc-panel absolute inset-0 w-full h-full flex flex-col md:flex-row justify-center items-center pl-4 md:pl-[4%] bg-[#ec4e39] overflow-hidden z-20">
+						<div class="desc-inner flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+							<h2 class="m-0 m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase">
+						Frontend
+					</h2>
+						<p class="m-0 md:w-[40%] mt-4 md:mt-0 text-sm md:text-base font-semibold md:font-bold hidden md:block">
+						Working on the Next-Generation HMI Experience without no driving experience.
+					</p>
+				</div>
+			</div>
+				</div>
+				<div class="project-row border-b border-[rgba(183,171,152,0.25)] relative pl-4 md:pl-[4%] cursor-default overflow-hidden py-8 md:py-12 min-h-[120px] md:min-h-[160px]" data-desc="Developed the Future of Backend Sports Ecosystem despite not being a sports fan.">
+					<h2 class="project double-layer m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase relative">
+						<span class="clip-fg inline-block text-[#000000]">
+						Backend
+					</span>
+						<span aria-hidden="true" class="text-[#000000] absolute top-0 left-0 opacity-40">
+						Backend
+					</span>
+					</h2>
+					<div class="desc-panel absolute inset-0 w-full h-full flex flex-col md:flex-row justify-center items-center pl-4 md:pl-[4%] bg-[#ec4e39] overflow-hidden z-20">
+						<div class="desc-inner flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+							<h2 class="m-0 m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase">
+						Backend
+					</h2>
+					<p class="m-0 md:w-[40%] mt-4 md:mt-0 text-sm md:text-base font-semibold md:font-bold hidden md:block">
+						Developed the Future of Backend Sports Ecosystem despite not being a sports fan.
+					</p>
+					</div>
+				</div>
+				</div>
+				<div class="project-row border-b border-[rgba(183,171,152,0.25)] relative pl-4 md:pl-[4%] cursor-default overflow-hidden py-8 md:py-12 min-h-[120px] md:min-h-[160px]" data-desc="Defined the visual concept and design language for the Devops Zephyr 2022 but never seen it in real life.">
+					<h2 class="project double-layer m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase relative">
+						<span class="clip-fg inline-block text-[#000000]">
+						Devops
+					</span>
+						<span aria-hidden="true" class="text-[#000000] absolute top-0 left-0 opacity-40">
+						Devops
+					</span>
+					</h2>
+					<div class="desc-panel absolute inset-0 w-full h-full flex flex-col md:flex-row justify-center items-center pl-4 md:pl-[4%] bg-[#ec4e39] overflow-hidden z-20">
+						<div class="desc-inner flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+							<h2 class="m-0 m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase">
+							Devops
+						</h2>
+						<p class="m-0 md:w-[40%] mt-4 md:mt-0 text-sm md:text-base font-semibold md:font-bold hidden md:block">
+							Defined the visual concept and design language for the Devops Zephyr 2022 but never seen it in real life.
+						</p>
+					</div>
+				</div>
+				</div>
+				<div class="project-row border-b border-[rgba(183,171,152,0.25)] relative pl-4 md:pl-[4%] cursor-default overflow-hidden py-8 md:py-12 min-h-[120px] md:min-h-[160px]" data-desc="I was just one person on a massive team that created an entire Creative eco-system.">
+					<h2 class="project double-layer m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase relative">
+						<span class="clip-fg inline-block text-[#000000]">
+							Creative
+						</span>
+						<span aria-hidden="true" class="text-[#000000] absolute top-0 left-0 opacity-40">
+							Creative
+						</span>
+					</h2>
+					<div class="desc-panel absolute inset-0 w-full h-full flex flex-col md:flex-row justify-center items-center pl-4 md:pl-[4%] bg-[#ec4e39] overflow-hidden z-20">
+						<div class="desc-inner flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+							<h2 class="m-0 m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase">
+								Creative
+							</h2>
+							<p class="m-0 md:w-[40%] mt-4 md:mt-0 text-sm md:text-base font-semibold md:font-bold hidden md:block">
+						I was just one person on a massive team that created an entire Creative eco-system.
+					</p>
+				</div>
+			</div>
+				</div>
+				<div class="project-row border-b border-[rgba(183,171,152,0.25)] relative pl-4 md:pl-[4%] cursor-default overflow-hidden py-8 md:py-12 min-h-[120px] md:min-h-[160px]" data-desc="Designed a 1M+ users product utilizing my best personal experience: sleeping.">
+					<h2 class="project double-layer m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase relative">
+						<span class="clip-fg inline-block text-[#000000]">
+						Sleepiq
+					</span>
+					<span aria-hidden="true" class="text-[#000000] absolute top-0 left-0 opacity-40">
+						Sleepiq
+					</span>
+				</h2>
+					<div class="desc-panel absolute inset-0 w-full h-full flex flex-col md:flex-row justify-center items-center pl-4 md:pl-[4%] bg-[#ec4e39] overflow-hidden z-20">
+						<div class="desc-inner flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+							<h2 class="m-0 m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase">
+								Sleepiq
+							</h2>
+							<p class="m-0 md:w-[40%] mt-4 md:mt-0 text-sm md:text-base font-semibold md:font-bold hidden md:block">
+								Designed a 1M+ users product utilizing my best personal experience: sleeping.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="project-row border-b border-[rgba(183,171,152,0.25)] relative pl-4 md:pl-[4%] cursor-default overflow-hidden py-8 md:py-12 min-h-[120px] md:min-h-[160px]" data-desc="Explored the Future of Fantasy Football while being in a country where football means a total different sport.">
+					<h2 class="project double-layer m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase relative">
+						<span class="clip-fg inline-block text-[#000000]">
+							Sporty
+						</span>
+						<span aria-hidden="true" class="text-[#000000] absolute top-0 left-0 opacity-40">
+							Sporty
+						</span>
+					</h2>
+					<div class="desc-panel absolute inset-0 w-full h-full flex flex-col md:flex-row justify-center items-center pl-4 md:pl-[4%] bg-[#ec4e39] overflow-hidden z-20">
+						<div class="desc-inner flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+							<h2 class="m-0 m-0 text-[clamp(3rem,8vw,8rem)] leading-[clamp(2.8rem,7.5vw,7.5rem)] font-bold uppercase">
+								Sporty
+							</h2>
+							<p class="m-0 md:w-[40%] mt-4 md:mt-0 text-sm md:text-base font-semibold md:font-bold hidden md:block">
+								Explored the Future of Fantasy Football while being in a country where football means a total different sport.
+							</p>
+						</div>
+					</div>
+				</div>
+		</section>
+
 		<section id="contact" class="min-h-screen p-12 bg-gray-50 text-gray-900">
 			<h2 class="text-3xl font-bold mb-4">Contact</h2>
 			<p>Contact info and form placeholder.</p>
 		</section>
 		<script src="./static/js/project-hover.js" defer></script>
 		<script src="./static/js/float-gallery.js" defer></script>
+		<script src="./static/js/projects-clip-scroll.js" defer></script>
+		<script src="./static/js/hover-clip.js" defer></script>
+		<script src="./static/js/char-reveal.js" defer></script>
+		<script src="./static/js/fade-on-scroll.js" defer></script>
 	</body>
 </html>

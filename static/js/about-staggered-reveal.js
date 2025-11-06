@@ -5,7 +5,8 @@
 					const text = heading.textContent.trim();
 					const words = text.split(/\s+/).map(w => {
 						const span = document.createElement('span');
-						span.className = 'about-word';
+						// add about-word plus Tailwind spacing utility
+						span.className = 'about-word inline-block mr-1';
 						span.textContent = w.replace(/\s+$/,'');
 						return span;
 					});

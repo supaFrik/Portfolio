@@ -1,180 +1,187 @@
-			.about-circle {
-				width: 180px;
-				height: 180px;
-				background: black; 
-				border-radius: 9999px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-weight: 500;
-                position: relative;
-                overflow: hidden;                
-			}
-			.about-circle::before {
-				content: "";
-                display: flex;
-                justify-content: center;
-                align-items: center;
-				position: absolute;
-				left: 0;
-				bottom: 0;
-				width: 100%;
-				height: 0%;
-				background: #2563eb;
-				z-index: 1;
-				transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-			}
+.about-circle {
+	width: clamp(9em, 12vw, 11em);
+	height: clamp(9em, 12vw, 11em);
+	background: black;
+	border-radius: 9999px;
+	font-weight: 500;
+	position: relative;
+	overflow: hidden;
+}
 
-			.about-circle:hover::before {
-				height: 100%;
-			}
+.about-circle::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 0%;
+	background: #2563eb;
+	z-index: 1;
+	transition: height var(--transition-medium);
+}
 
-			.about-circle > * {
-				position: relative;
-				z-index: 2;
-				transition: color 0.4s cubic-bezier(0.4,0,0.2,1);
-			}
+.about-circle:hover::before {
+	height: 100%;
+}
 
-			.about-circle:hover > * {
-				color: #fff;
-			}
+.about-circle>* {
+	position: relative;
+	z-index: 2;
+	transition: color var(--transition-medium);
+}
 
-			@keyframes about-wiggle {
-				0% { transform: translate(0px, 0px) rotate(0deg); }
-				20% { transform: translate(-2px, -2px) rotate(-0.6deg); }
-				40% { transform: translate(2px, -1px) rotate(0.4deg); }
-				60% { transform: translate(-1px, 1px) rotate(-0.3deg); }
-				80% { transform: translate(1px, 2px) rotate(0.5deg); }
-				100% { transform: translate(0px, 0px) rotate(0deg); }
-			}
+.about-circle:hover>* {
+	color: #fff;
+}
 
-			.about-circle {
-				will-change: transform;
-				transition: transform 220ms cubic-bezier(0.4,0,0.2,1);
-				transform-origin: center center;
-			}
-
-			.about-circle:hover {
-				animation: about-wiggle 700ms ease-in-out infinite;
-			}
-
-			@media (prefers-reduced-motion: reduce) {
-				.about-circle,
-				.about-circle:hover {
-					animation: none !important;
-					transition: none !important;
-					will-change: auto;
-				}
-			}
-			.projects-card {
-			background: transparent;
-			}
-            .projects-card:hover {
-                opacity: 0.4;
-            }
-			.projects-card h2, .projects-card p {
-				transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-			}
-            .projects-card:hover h2 {
-				transform: translateX(-10px);
-            }
-            .projects-card:hover p {
-                transform: translateX(10px);
-            }
-
-			.modalContainer{
-				height: 350px;
-				width: 400px;
-				position: absolute;
-				background-color: white;
-				overflow: hidden;
-				pointer-events: none;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				z-index: 40;
-				top: 0;
-				left: 0;
-				transform: translate(-50%, -50%);
-			}
-
-			.modalSlider{
-				height: 100%;
-				width: 100%;
-				position: absolute;
-				transition: top 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-			}
-
-			.modal{
-				height: 100%;
-				width: 100%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.modal img{
-				max-height: 90%;
-				width: auto;
-				display: block;
-			}
-
-			.cursor, .cursorLabel{
-				width: 80px;
-				height: 80px;
-				border-radius: 50%;
-				background-color: #455CE9;
-				color: white;
-				position: absolute;
-				z-index: 50;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 14px;
-				font-weight: 300;
-				pointer-events: none;
-			}
-
-			.cursorLabel{
-				background-color: transparent;
-				color: #111827;
-				font-weight: 600;
-			}
-
-			@media (max-width: 768px){
-				.modalContainer, .cursor, .cursorLabel{ display: none; }
-			}
-
-			#float-gallery {
-				background: transparent;
-			}
-	.float-gallery-root .plane{
-		z-index: 10;
-		position: absolute;
-		width: 120%;
-		height: 100%;
-	}
-	.float-gallery-root .plane img{
-		position: absolute;
-		will-change: transform;
-		max-width: 40vw;
-	}
-	.float-gallery-root .plane-1 img.fg-img-1{ left: 80%; top: 70%; width: 6vw; transform: rotate(-3deg);}
-	.float-gallery-root .plane-1 img.fg-img-2{ left: 4%; top: 70%; width: 10vw; transform: rotate(3deg);}
-	.float-gallery-root .plane-1 img.fg-img-7{ left: 39%; top: 5%; width: 10vw; transform: rotate(2deg);}
-
-	.float-gallery-root .plane-2 img.fg-img-4{ left: 4%; top: 4%; width: 8vw; transform: rotate(-10deg);}
-	.float-gallery-root .plane-2 img.fg-img-6{ left: 74%; top: 10%; width: 6vw; transform: rotate(12deg);}
-	.float-gallery-root .plane-2 img.fg-img-8{ left: 48%; top: 42%; width: 14vw; transform: rotate(-6deg);}
-
-	@media (max-width: 768px){
-		.float-gallery-root .plane img{ display: none; }
-		#float-gallery{ height: 240px !important; }
+@keyframes about-wiggle {
+	0% {
+		transform: translate(0px, 0px) rotate(0deg);
 	}
 
-#projectDescription { transition: opacity 0.3s ease; }
+	20% {
+		transform: translate(-2px, -2px) rotate(-0.6deg);
+	}
+
+	40% {
+		transform: translate(2px, -1px) rotate(0.4deg);
+	}
+
+	60% {
+		transform: translate(-1px, 1px) rotate(-0.3deg);
+	}
+
+	80% {
+		transform: translate(1px, 2px) rotate(0.5deg);
+	}
+
+	100% {
+		transform: translate(0px, 0px) rotate(0deg);
+	}
+}
+
+.about-circle {
+	will-change: transform;
+	transition: transform 220ms var(--easing);
+	transform-origin: center center;
+}
+
+.about-circle:hover {
+	animation: about-wiggle 700ms ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.projects-scroll .clip-fg { clip-path: none !important; --clip: 0%; }
+
+	.about-circle,
+	.about-circle:hover {
+		animation: none !important;
+		transition: none !important;
+		will-change: auto;
+	}
+}
+
+
+.modalContainer {
+	height: 350px;
+	width: 400px;
+	position: absolute;
+	background-color: white;
+	overflow: hidden;
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 40;
+	top: 0;
+	left: 0;
+	transform: translate(-50%, -50%);
+}
+
+.modalSlider {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	transition: top var(--transition-long);
+}
+
+.modal {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal img {
+	max-height: 90%;
+	width: auto;
+	display: block;
+}
+
+.cursor,
+.cursorLabel {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+.cursor,
+.cursorLabel {
+	/* sizing/visuals migrated to Tailwind in HTML; keep behavior-related properties */
+	position: absolute;
+	z-index: 50;
+	pointer-events: none;
+}
+	background-color: var(--color-blue);
+	color: var(--color-white);
+	position: absolute;
+	z-index: 50;
+	font-size: 14px;
+	font-weight: 300;
+	pointer-events: none;
+}
+
+.cursorLabel {
+	background-color: transparent;
+	color: var(--color-text);
+	font-weight: 600;
+}
+
+@media (max-width: 768px) {
+.modalContainer {
+	/* sizing and positioning migrated to Tailwind in HTML; keep structural hooks for JS */
+	overflow: hidden;
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 40;
+}
+
+	.modalContainer,
+	.cursor,
+	.cursorLabel {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	.float-gallery-root .plane img {
+		display: none;
+	}
+
+	#float-gallery {
+		height: 240px !important;
+	}
+}
+
+#projectDescription {
+	transition: opacity 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.projects-scroll .clip-fg {
+		clip-path: none !important;
+		--clip: 0%;
+	}
 }
 
 .projects-scroll .project-row.hovering .clip-fg,
@@ -185,59 +192,87 @@
 
 .projects-scroll .project-row .desc-panel {
 	clip-path: inset(50% 0 50% 0);
-	transition: clip-path 0.5s cubic-bezier(0.4,0,0.2,1);
+	transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 	will-change: clip-path;
 	pointer-events: none;
 }
+
 .projects-scroll .project-row.hovering .desc-panel {
 	clip-path: inset(0 0 0 0);
 }
 
-/* Fade-on-scroll */
 .fade-on-scroll {
 	opacity: 0;
 	transform: translateY(24px);
 	will-change: opacity, transform;
-	transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1);
+	transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .fade-on-scroll.is-visible {
 	opacity: 1;
 	transform: translateY(0);
 }
+
 .fade-up-sm {
 	transform: translateY(14px);
 }
-.fade-delay-1 { transition-delay: 0.1s; }
-.fade-delay-2 { transition-delay: 0.2s; }
-.fade-delay-3 { transition-delay: 0.3s; }
+
+.fade-delay-1 {
+	transition-delay: 0.1s;
+}
+
+.fade-delay-2 {
+	transition-delay: 0.2s;
+}
+
+.fade-delay-3 {
+	transition-delay: 0.3s;
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.fade-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
+	.fade-on-scroll {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+	}
 }
 
 body {
 	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }
 
-.marquee-wrap { 
+.marquee-wrap {
 	position: relative;
 	overflow: hidden;
 }
+
 .marquee-track {
 	display: inline-block;
-	white-space: nowrap; 
+	white-space: nowrap;
 	will-change: transform;
 	animation: slide-right 18s linear infinite;
 }
-.marquee-track > * {
+
+.marquee-track>* {
 	display: inline-block;
 	padding-right: 4rem;
 }
+
 @keyframes slide-right {
-	0% { transform: translateX(0); }
-	100% { transform: translateX(-50%); }
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-50%);
+	}
 }
+
 @media (prefers-reduced-motion: reduce) {
-	.marquee-track { animation: none; transform: none; }
+	.marquee-track {
+		animation: none;
+		transform: none;
+	}
 }
 
 .about-word {
@@ -247,6 +282,256 @@ body {
 	will-change: transform, opacity;
 	margin-right: .28rem;
 }
+
+section {
+    display: block;
+    /* Section spacing migrated to Tailwind utilities in HTML. Keep positioning here. */
+    position: relative;
+}
+
+.about-intro {
+	/* bottom padding handled in HTML via Tailwind */
+	pointer-events: auto; /* kept intentionally minimal */
+}
+
+.about-container {
+	/* container padding migrated to Tailwind in HTML */
+	pointer-events: auto; /* kept intentionally minimal */
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.clip-fg { clip-path: none !important; --clip: 0%; }
+	.clip-fg {
+		clip-path: none !important;
+		--clip: 0%;
+	}
+}
+
+.btn-hamburger {
+	/* enable smooth animated show/hide (scale + fade) */
+	will-change: transform, opacity;
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* play a short 'pop' animation whenever the button becomes visible */
+.btn-hamburger:not(.fade-hidden) {
+	animation: btn-pop-in 280ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes btn-pop-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+	60% {
+		opacity: 1;
+		transform: scale(1.08);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* play a short scale+fade out when the hidden class is applied */
+.btn-hamburger.fade-hidden {
+	animation: btn-pop-out 180ms cubic-bezier(.4,0,.2,1) both;
+	pointer-events: none;
+}
+
+@keyframes btn-pop-out {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+}
+
+#hamburger {
+	width: 60px;
+	height: 40px;
+	display: block;
+}
+
+#hamburger #top-line,
+#hamburger #middle-line,
+#hamburger #bottom-line {
+	transform-box: fill-box;
+	transform-origin: center;
+	transition: transform .5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity .4s ease;
+}
+
+#hamburger.is-active #top-line {
+	transform: translateY(10px) rotate(45deg) scale(.9);
+}
+
+#hamburger.is-active #bottom-line {
+	transform: translateY(-10px) rotate(-45deg) scale(.9);
+}
+
+#hamburger.is-active #middle-line {
+	opacity: 0;
+	transform: scale(.6);
+}
+
+#hamburger:focus {
+	outline: 2px solid transparent;
+	outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	#hamburger #top-line,
+	#hamburger #middle-line,
+	#hamburger #bottom-line {
+		transition: none !important;
+	}
+}
+
+.mobile-menu {
+	/* Structural layout (position/size/background) migrated to Tailwind in HTML. */
+	transform: translate(calc(100%), 0) rotate(0.001deg);
+	transition: transform .8s cubic-bezier(.7, 0, .2, 1);
+	will-change: transform;
+	pointer-events: none;
+}
+
+.mobile-menu-curve {
+	/* Positioning and sizing moved to Tailwind in HTML; keep fill and overflow behavior here. */
+	pointer-events: none;
+	fill: var(--color-dark, #111);
+	z-index: -1;
+	overflow: visible;
+}
+
+.mobile-menu-curve path {
+	fill: var(--color-dark, #111);
+}
+
+.mobile-menu.open {
+	transform: translateX(0) rotate(0.001deg);
+	pointer-events: auto;
+}
+
+.mobile-menu.open .mobile-menu-curve {
+	opacity: 1;
+}
+
+.mobile-menu:not(.open) .mobile-menu-curve {
+	opacity: 1;
+}
+
+.curve-variant-controls {
+	/* Positioning & gap migrated to Tailwind in HTML when shown */
+	display: none; 
+	z-index: 120;
+}
+
+.curve-variant-controls .curve-variant-btn {
+	/* Visual button styling retained but spacing moved to Tailwind in HTML */
+	background: rgba(255,255,255,0.06);
+	color: #fff;
+	font-size: 12px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.curve-variant-controls[aria-hidden="false"] { display: flex; }
+
+.mobile-menu[aria-hidden="false"] {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+	pointer-events: auto;
+}
+
+.mobile-menu-inner {
+    position: relative;
+    transform: translate(0, 0) rotate(0.001deg);
+    transition: all .6s cubic-bezier(.7, 0, .2, 1);
+    will-change: transform;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.mobile-menu-header {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	/* padding-bottom moved to Tailwind in HTML */
+}
+
+.mobile-menu-title {
+	display: block;
+	font-size: 12px;
+	letter-spacing: 2px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.mobile-menu-list {
+	list-style: none;
+	margin: 0;
+	/* padding-top moved to Tailwind in HTML */
+}
+
+.mobile-menu-link {
+	/* layout & spacing moved to Tailwind utilities in HTML; selector retained for pseudo-element and JS state */
+	position: relative;
+}
+
+.mobile-menu-link::before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #fff;
+	opacity: 0;
+	transform: scale(0);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu-link.active::before {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.mobile-menu-link:hover {
+    opacity: 0.9;
+}
+
+header nav a {
+	position: relative;
+	transition: color 0.3s ease;
+}
+
+header nav a::before {
+	content: '';
+	position: absolute;
+	left: -12px;
+	top: 50%;
+	transform: translateY(-50%) scale(0);
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: currentColor;
+	opacity: 0;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+header nav a.active::before {
+	opacity: 1;
+	transform: translateY(-50%) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.mobile-menu,
+	.btn-hamburger {
+		transition: none !important;
+	}
+}
+
+.no-scroll,
+.no-scroll body {
+	overflow: hidden !important;
 }

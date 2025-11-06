@@ -80,6 +80,24 @@
 	}
 }
 
+.container a h2 {
+	padding-left: calc(var(--container-padding) * 1);
+}
+.container a:hover h2 {
+	transform: translateX(-10px);
+}
+.container a:hover p {
+	transform: translateX(10px);
+}
+
+.container a h2,
+.container a p {
+	transition: all var(--transition-medium);
+}
+
+.container a p {
+	padding-right: calc(var(--container-padding) * 1);
+}
 
 .modalContainer {
 	height: 350px;
@@ -125,7 +143,6 @@
 	border-radius: 50%;
 .cursor,
 .cursorLabel {
-	/* sizing/visuals migrated to Tailwind in HTML; keep behavior-related properties */
 	position: absolute;
 	z-index: 50;
 	pointer-events: none;
@@ -147,7 +164,6 @@
 
 @media (max-width: 768px) {
 .modalContainer {
-	/* sizing and positioning migrated to Tailwind in HTML; keep structural hooks for JS */
 	overflow: hidden;
 	pointer-events: none;
 	display: flex;
@@ -258,16 +274,6 @@ body {
 	padding-right: 4rem;
 }
 
-@keyframes slide-right {
-	0% {
-		transform: translateX(0);
-	}
-
-	100% {
-		transform: translateX(-50%);
-	}
-}
-
 @media (prefers-reduced-motion: reduce) {
 	.marquee-track {
 		animation: none;
@@ -283,21 +289,6 @@ body {
 	margin-right: .28rem;
 }
 
-section {
-    display: block;
-    /* Section spacing migrated to Tailwind utilities in HTML. Keep positioning here. */
-    position: relative;
-}
-
-.about-intro {
-	/* bottom padding handled in HTML via Tailwind */
-	pointer-events: auto; /* kept intentionally minimal */
-}
-
-.about-container {
-	/* container padding migrated to Tailwind in HTML */
-	pointer-events: auto; /* kept intentionally minimal */
-}
 
 @media (prefers-reduced-motion: reduce) {
 	.clip-fg {
@@ -307,13 +298,41 @@ section {
 }
 
 .btn-hamburger {
-	/* enable smooth animated show/hide (scale + fade) */
 	will-change: transform, opacity;
 	opacity: 1;
 	transform: scale(1);
 }
 
-/* play a short 'pop' animation whenever the button becomes visible */
+.btn-hamburger, .btn-hamburger .btn-click {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+.magnetic-button {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #111;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-hamburger .btn-click {
+	position: relative;
+	display: inline-block;
+	transition: transform 0.3s ease-out;
+	will-change: transform;
+}
+
 .btn-hamburger:not(.fade-hidden) {
 	animation: btn-pop-in 280ms cubic-bezier(.2,.8,.2,1) both;
 }
@@ -321,7 +340,10 @@ section {
 @keyframes btn-pop-in {
 	0% {
 		opacity: 0;
-		transform: scale(0.6);
+		transform: scale(0.2);
+	}
+	20% {
+		opacity: 1;
 	}
 	60% {
 		opacity: 1;
@@ -333,7 +355,6 @@ section {
 	}
 }
 
-/* play a short scale+fade out when the hidden class is applied */
 .btn-hamburger.fade-hidden {
 	animation: btn-pop-out 180ms cubic-bezier(.4,0,.2,1) both;
 	pointer-events: none;
@@ -346,7 +367,7 @@ section {
 	}
 	100% {
 		opacity: 0;
-		transform: scale(0.6);
+		transform: scale(0.2);
 	}
 }
 
@@ -392,7 +413,6 @@ section {
 }
 
 .mobile-menu {
-	/* Structural layout (position/size/background) migrated to Tailwind in HTML. */
 	transform: translate(calc(100%), 0) rotate(0.001deg);
 	transition: transform .8s cubic-bezier(.7, 0, .2, 1);
 	will-change: transform;
@@ -400,7 +420,6 @@ section {
 }
 
 .mobile-menu-curve {
-	/* Positioning and sizing moved to Tailwind in HTML; keep fill and overflow behavior here. */
 	pointer-events: none;
 	fill: var(--color-dark, #111);
 	z-index: -1;
@@ -425,13 +444,11 @@ section {
 }
 
 .curve-variant-controls {
-	/* Positioning & gap migrated to Tailwind in HTML when shown */
 	display: none; 
 	z-index: 120;
 }
 
 .curve-variant-controls .curve-variant-btn {
-	/* Visual button styling retained but spacing moved to Tailwind in HTML */
 	background: rgba(255,255,255,0.06);
 	color: #fff;
 	font-size: 12px;
@@ -456,27 +473,11 @@ section {
     pointer-events: auto;
 }
 
-.mobile-menu-header {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-	/* padding-bottom moved to Tailwind in HTML */
-}
-
 .mobile-menu-title {
 	display: block;
 	font-size: 12px;
 	letter-spacing: 2px;
 	color: rgba(255, 255, 255, 0.6);
-}
-
-.mobile-menu-list {
-	list-style: none;
-	margin: 0;
-	/* padding-top moved to Tailwind in HTML */
-}
-
-.mobile-menu-link {
-	/* layout & spacing moved to Tailwind utilities in HTML; selector retained for pseudo-element and JS state */
-	position: relative;
 }
 
 .mobile-menu-link::before {
@@ -531,7 +532,32 @@ header nav a.active::before {
 	}
 }
 
-.no-scroll,
-.no-scroll body {
-	overflow: hidden !important;
+/* Tech Stack Minimalist Styles */
+.tech-stack {
+	background: #fff;
+	color: #000;
+}
+
+.tech_container {
+	max-width: 900px;
+}
+
+.tech-name {
+	padding: 16px 24px;
+	border-radius: 50px;
+	border: 1px solid #000;
+	color: #000;
+	background: #fff;
+	cursor: default;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+}
+
+.tech-name:hover {
+	background: #000;
+	color: #fff;
 }

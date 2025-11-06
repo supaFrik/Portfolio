@@ -8,6 +8,8 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+	<!-- GSAP-based smooth scroller init (local) -->
+	<script src="./static/js/gsap-smooth-scroll.js" defer></script>
 	<script src="https://unpkg.com/flubber@0.4.2/build/flubber.min.js"></script>
 	<link rel="stylesheet" href="static/css/base.css" />
 	<link rel="stylesheet" href="static/css/style.css" />
@@ -16,6 +18,7 @@
 	<script src="./static/js/about-staggered-reveal.js" defer></script>
 	<script src="./static/js/menu-curve-morph.js" defer></script>
 	<script src="./static/js/burger-menu.js" defer></script>
+	<script src="./static/js/magnetic-button.js" defer></script>
 	<script src="./static/js/active-nav-indicator.js" defer></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,10 +28,12 @@
 </head>
 
 <body class="antialiased text-white bg-gray-100">
+	<div id="smooth-scroll">
 	<!-- Menu -->
-	<div class="btn-hamburger fixed top-8 right-14 z-[9999] cursor-pointer py-[18px] px-[10px] rounded-full bg-[var(--color-dark)] transition-opacity transition-transform duration-300 ease-linear">
-		<div class="btn-click magnetic">
-			<svg id="hamburger" class="Header__toggle-svg" viewBox="0 0 60 40" role="button" aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
+	<div class="btn-hamburger fixed top-8 right-14 z-[9999]">
+		<div class="magnetic-button">
+			<svg id="hamburger" class="Header__toggle-svg" viewBox="0 0 60 40" role="button"
+				aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
 				<g stroke="#fff" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
 					<path id="top-line" d="M10,10 L50,10 Z"></path>
 					<path id="middle-line" d="M10,20 L50,20 Z"></path>
@@ -38,28 +43,44 @@
 		</div>
 	</div>
 
-	<nav id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-screen w-[50vw] min-w-[400px] bg-transparent z-[100]" aria-hidden="true" aria-label="Main mobile navigation">
-			<svg class="mobile-menu-curve absolute left-[-100px] top-0 w-[100px] h-screen pointer-events-none z-[-1] overflow-visible">
-				<path id="menu-curve-path" fill="#111"></path>
-			</svg>
-		
-		<div id="curveVariantControls" class="curve-variant-controls absolute left-2 top-2 hidden gap-2 z-[120]" aria-hidden="true">
-			<button data-variant="subtle" class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Subtle</button>
-			<button data-variant="pronounced" class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Pronounced</button>
-			<button data-variant="extra" class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Extra</button>
+	<nav id="mobileMenu"
+		class="mobile-menu fixed top-0 right-[-140px] h-screen w-[calc(100vw+140px)] sm:w-[40rem] bg-transparent z-[100]"
+		aria-hidden="true" aria-label="Main mobile navigation">
+		<svg
+			class="mobile-menu-curve absolute left-[-100px] top-0 w-[100px] h-screen pointer-events-none z-[-1] overflow-visible">
+			<path id="menu-curve-path" fill="#111"></path>
+		</svg>
+
+		<div id="curveVariantControls" class="curve-variant-controls absolute left-2 top-2 hidden gap-2 z-[120]"
+			aria-hidden="true">
+			<button data-variant="subtle"
+				class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Subtle</button>
+			<button data-variant="pronounced"
+				class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Pronounced</button>
+			<button data-variant="extra"
+				class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Extra</button>
 		</div>
-		<div class="mobile-menu-inner flex flex-col justify-between h-full pt-[15vh] pb-[10vh] px-[7.5vw] bg-[var(--color-dark)]">
+		<div class="mobile-menu-inner flex flex-col h-full pt-[15vh] pb-[10vh] px-[7.5vw] bg-[var(--color-dark)]">
 			<div class="mobile-menu-header pb-[18px]">
 				<span class="mobile-menu-title">Navigation</span>
 			</div>
 			<ul class="mobile-menu-list pt-6">
-				<li><a href="#" class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Home</a></li>
-				<li><a href="#work" class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Work</a></li>
-				<li><a href="#about" class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">About</a></li>
-				<li><a href="#contact" class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Contact</a></li>
+				<li><a href="#"
+						class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Home</a>
+				</li>
+				<li><a href="#work"
+						class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Work</a>
+				</li>
+				<li><a href="#about"
+						class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">About</a>
+				</li>
+				<li><a href="#contact"
+						class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Contact</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
+
 	<!-- Hero -->
 	<section class="rail relative h-screen w-full bg-gray-300">
 		<img src="./static/img/ultrawide-blue-3840x2160-19825.png" alt="hero-bg"
@@ -94,15 +115,15 @@
 	</section>
 
 	<!-- About Me -->
-	<section id="about" class="about-intro text-gray-900 py-[var(--section-padding)] pb-[calc(var(--section-padding)*.33)]">
-			<div class="about-container flex flex-col sm:flex-row">
-			<!-- container padding migrated to Tailwind -->
-			<div class="about-container flex flex-col sm:flex-row px-[calc(var(--container-padding)*2)]">
+	<section id="about"
+		class="about-intro text-gray-900 py-[var(--section-padding)] pb-[calc(var(--section-padding)*.33)]">
+		<div class="container flex flex-col sm:flex-row">
 			<div class="pb-10 sm:pr-[var(--gap-padding)]">
 				<h2
-					class="about-heading not-italic leading-[1.45] text-[clamp(1.55em,2.3vw,2.5em)] leading-tight fade-on-scroll">
+					class="about-heading not-italic leading-[1.45] text-[clamp(1.55em,2.3vw,2.5em)] fade-on-scroll">
 					Helping brands to stand out in the digital era. Together we will set the new status quo. No
-					nonsense, always on the cutting edge.</h2>
+					nonsense, always on the cutting edge.
+				</h2>
 			</div>
 			<div class="text-left sm:pl-[var(--gap-padding)]">
 				<p class="break-words fade-on-scroll fade-delay-1 mb-5 sm:mb-20">The combination of my passion for
@@ -118,35 +139,40 @@
 
 	<!-- Projects -->
 	<section class="container mx-auto max-w-[100em] px-[var(--container-padding)] text-gray-800 hidden lg:block">
-		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll" data-index="0"
-			data-src="./static/img/Nike Ecommerce.jpg" data-color="#8d99ae"
+		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
+			data-index="0" data-src="./static/img/Nike Ecommerce.jpg" data-color="#8d99ae"
 			data-link="https://github.com/supaFrik/Nike-e-commerce-web-application"
 			href="https://github.com/supaFrik/Nike-e-commerce-web-application" target="_blank"
 			rel="noopener noreferrer">
-			<h2 class="fade-delay-1">Nike Ecommerce Web Application</h2>
+			<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">Nike Web</h2>
 			<p class="text-sm md:text-base fade-delay-2">Full-stack project.</p>
 		</a>
-		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll" data-index="1"
-			data-src="./static/img/todo.png" data-color="#edf2f4" data-link="https://github.com/supaFrik/todo-list"
-			href="https://github.com/supaFrik/todo-list" target="_blank" rel="noopener noreferrer">
-			<h2 class="fade-delay-1">To-do List</h2>
+		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
+			data-index="1" data-src="./static/img/todo.png" data-color="#edf2f4"
+			data-link="https://github.com/supaFrik/todo-list" href="https://github.com/supaFrik/todo-list"
+			target="_blank" rel="noopener noreferrer">
+			<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">To-do List</h2>
 			<p class="text-sm md:text-base fade-delay-2">OOP, SQL, CRUD, REST</p>
 		</a>
-		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll" data-index="2"
-			data-src="./static/img/portfolio.png" data-color="#ef233c" data-link="https://github.com/supaFrik/Portfolio"
-			href="https://github.com/supaFrik/Portfolio" target="_blank" rel="noopener noreferrer">
-			<h2 class="fade-delay-1">Portfolio</h2>
+		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
+			data-index="2" data-src="./static/img/portfolio.png" data-color="#ef233c"
+			data-link="https://github.com/supaFrik/Portfolio" href="https://github.com/supaFrik/Portfolio"
+			target="_blank" rel="noopener noreferrer">
+			<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">Portfolio</h2>
 			<p class="text-sm md:text-base fade-delay-2">HTML, Tailwind CSS, GSAP animations, Vanilla JavaScript.</p>
 		</a>
 
 		<div id="hoverModalRoot">
-			<div class="modalContainer h-[350px] w-[400px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center" id="modalContainer" aria-hidden="true">
+			<div class="modalContainer h-[350px] w-[400px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center"
+				id="modalContainer" aria-hidden="true">
 				<div class="modalSlider" id="modalSlider">
 					<!-- JS -->
 				</div>
 			</div>
-			<div class="cursor w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-light pointer-events-none" id="hoverCursor"></div>
-			<div class="cursorLabel w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-semibold pointer-events-none bg-transparent flex items-center justify-center" id="hoverCursorLabel">View</div>
+			<div class="cursor w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-light pointer-events-none"
+				id="hoverCursor"></div>
+			<div class="cursorLabel w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-semibold pointer-events-none bg-transparent flex items-center justify-center"
+				id="hoverCursorLabel">View</div>
 		</div>
 	</section>
 
@@ -316,10 +342,37 @@
 				</div>
 		</section> -->
 
-	<section id="contact" class="min-h-screen p-12 bg-gray-50 text-gray-900">
-		<h2 class="text-3xl font-bold mb-4">Contact</h2>
-		<p>Contact info and form placeholder.</p>
+	<!-- Tech stack Section -->
+	<section class="tech-stack min-h-screen py-[var(--section-padding)] pb-[calc(var(--section-padding)*.33)] bg-white">
+		<div class="container">
+			<div class="flex flex-col gap-16">
+				<div class="text-left">
+					<h2 class="text-sm uppercase tracking-widest mb-2 text-black font-light">ART DIRECTION</h2>
+				</div>
+				<div class="tech_container grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12">
+					<div>
+						<p class="motto text-black text-2xl md:text-3xl lg:text-4xl leading-[1.3] font-light">
+							Creating digital products from scratch is a team effort. Each of the specialists can bring something new to the project, but they must all work as a single mechanism. Well-established processes and a well-coordinated team are the main keys to success.
+						</p>
+					</div>
+					<div class="flex flex-wrap gap-3 content-start">
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JAVA</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">MYSQL</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">SPRING BOOT</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JSP</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">TAILWIND CSS</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">GIT</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">REST API</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">DOCKER</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">GITHUB</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JAVASCRIPT</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
+
+	</div><!-- /#smooth-scroll -->
 
 	<script src="./static/js/project-hover.js" defer></script>
 	<script src="./static/js/float-gallery.js" defer></script>
@@ -328,4 +381,5 @@
 	<script src="./static/js/char-reveal.js" defer></script>
 	<script src="./static/js/fade-on-scroll.js" defer></script>
 </body>
+
 </html>

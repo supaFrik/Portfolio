@@ -1,174 +1,103 @@
-(() => {
-	const hamburger = document.getElementById('hamburger');
-	if (!hamburger) return;
+// Burger Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const topLine = document.getElementById('top-line');
+  const middleLine = document.getElementById('middle-line');
+  const bottomLine = document.getElementById('bottom-line');
+  
+  let isOpen = false;
 
-	// find wrapper to hide/show (falls back to the SVG itself)
-	const btnWrapper = hamburger.closest('.btn-hamburger') || hamburger;
+  // Toggle menu function
+  const toggleMenu = () => {
+    isOpen = !isOpen;
+    
+    // Update ARIA attributes
+    hamburger.setAttribute('aria-expanded', isOpen);
+    mobileMenu.setAttribute('aria-hidden', !isOpen);
+    
+    if (isOpen) {
+      // Open menu
+      gsap.to(mobileMenu, {
+        right: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+      });
+      
+      // Animate hamburger to X
+      gsap.to(topLine, {
+        attr: { d: 'M10,20 L50,20 Z' },
+        rotation: 45,
+        transformOrigin: 'center',
+        duration: 0.3
+      });
+      
+      gsap.to(middleLine, {
+        opacity: 0,
+        duration: 0.2
+      });
+      
+      gsap.to(bottomLine, {
+        attr: { d: 'M10,20 L50,20 Z' },
+        rotation: -45,
+        transformOrigin: 'center',
+        duration: 0.3
+      });
+    } else {
+      // Close menu
+      gsap.to(mobileMenu, {
+        right: '-140px',
+        duration: 0.8,
+        ease: 'power3.in'
+      });
+      
+      // Animate X back to hamburger
+      gsap.to(topLine, {
+        attr: { d: 'M10,10 L50,10 Z' },
+        rotation: 0,
+        transformOrigin: 'center',
+        duration: 0.3
+      });
+      
+      gsap.to(middleLine, {
+        opacity: 1,
+        duration: 0.2
+      });
+      
+      gsap.to(bottomLine, {
+        attr: { d: 'M10,30 L50,30 Z' },
+        rotation: 0,
+        transformOrigin: 'center',
+        duration: 0.3
+      });
+    }
+  };
 
-	hamburger.setAttribute('role', 'button');
-	hamburger.setAttribute('aria-label', 'Toggle navigation');
-	hamburger.setAttribute('aria-expanded', 'false');
-	hamburger.setAttribute('tabindex', '0');
+  // Add click event to hamburger
+  hamburger.addEventListener('click', toggleMenu);
+  
+  // Add keyboard support
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
 
-	const toggle = () => {
-		const active = hamburger.classList.toggle('is-active');
-		hamburger.setAttribute('aria-expanded', active ? 'true' : 'false');
+  // Close menu when clicking on menu links
+  const menuLinks = document.querySelectorAll('.mobile-menu-link');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isOpen) {
+        toggleMenu();
+      }
+    });
+  });
 
-		// toggle mobile menu when hamburger toggles
-		if (mobileMenu) {
-			// add/remove open class so CSS handles the curve transition
-			mobileMenu.classList.toggle('open', active);
-			const open = active;
-			mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-			document.documentElement.classList.toggle('no-scroll', open);
-			// while menu open keep hamburger visible even if hero is in view
-			if (open) {
-				btnWrapper.classList.remove('fade-hidden');
-			} else {
-				// re-evaluate visibility based on hero position
-				if (hero && ('IntersectionObserver' in window)) {
-					// rely on observer to update visibility; do nothing here
-				} else if (hero) {
-					// immediate check
-					const rect = hero.getBoundingClientRect();
-					const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
-					if (inView) hideBtn(); else showBtn();
-				} else showBtn();
-			}
-		}
-	};
-
-	const showBtn = () => {
-	 	btnWrapper.classList.remove('fade-hidden');
-	 	btnWrapper.style.visibility = '';
-	 	hamburger.setAttribute('aria-hidden', 'false');
-	};
-
-	const hideBtn = () => {
-	 	// Use fade-hidden so CSS transitions handle the visual hide
-	 	btnWrapper.classList.add('fade-hidden');
-	 	hamburger.setAttribute('aria-hidden', 'true');
-	};
-
-	const hero = document.querySelector('.rail');
-	const mobileMenu = document.getElementById('mobileMenu');
-	if (hero) {
-		if ('IntersectionObserver' in window) {
-			const io = new IntersectionObserver((entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						hideBtn();
-					} else {
-						showBtn();
-					}
-				});
-			}, { threshold: 0.01 });
-
-			io.observe(hero);
-		} else {
-			const checkHero = () => {
-				const rect = hero.getBoundingClientRect();
-				const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
-				if (inView) hideBtn(); else showBtn();
-			};
-
-			checkHero();
-			window.addEventListener('scroll', checkHero, { passive: true });
-			window.addEventListener('resize', checkHero);
-		}
-	} else {
-		showBtn();
-	}
-
-	hamburger.addEventListener('click', toggle);
-	hamburger.addEventListener('keydown', (e) => {
-		if (e.key === 'Enter' || e.key === ' ') {
-			e.preventDefault();
-			toggle();
-		}
-	});
-
-	// Close mobile menu when clicking outside or pressing Escape
-	if (mobileMenu) {
-		mobileMenu.addEventListener('click', (e) => {
-			// close if clicked on the backdrop (not on inner content)
-			if (e.target === mobileMenu) {
-				// close
-					hamburger.classList.remove('is-active');
-				hamburger.setAttribute('aria-expanded', 'false');
-					mobileMenu.setAttribute('aria-hidden', 'true');
-					mobileMenu.classList.remove('open');
-				document.documentElement.classList.remove('no-scroll');
-				// re-evaluate visibility
-				if (hero) {
-					const rect = hero.getBoundingClientRect();
-					const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
-					if (inView) hideBtn();
-				}
-			}
-		});
-
-		window.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
-				hamburger.classList.remove('is-active');
-				hamburger.setAttribute('aria-expanded', 'false');
-					mobileMenu.setAttribute('aria-hidden', 'true');
-					mobileMenu.classList.remove('open');
-				document.documentElement.classList.remove('no-scroll');
-				if (hero) {
-					const rect = hero.getBoundingClientRect();
-					const inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
-					if (inView) hideBtn();
-				}
-			}
-		});
-	}
-})();
-
-// Set aria-current on mobile menu links to show active dot
-(() => {
-	function setActiveMobileLink() {
-		const links = document.querySelectorAll('.mobile-menu-link');
-		if (!links || links.length === 0) return;
-
-		// Normalize current target: prefer hash if present, else pathname
-		const hash = window.location.hash || '';
-		const path = window.location.pathname || '';
-
-		links.forEach((a) => {
-			// clear existing
-			a.removeAttribute('aria-current');
-			a.classList.remove('active');
-
-			const href = a.getAttribute('href') || '';
-
-			// Match hash (e.g. #about) or full pathname if links are full URLs
-			if (hash && (href === hash || href === (path + hash))) {
-				a.setAttribute('aria-current', 'page');
-				a.classList.add('active');
-			} else if (!hash) {
-				// match by pathname (strip origin if present)
-				try {
-					const url = new URL(href, window.location.origin);
-					if (url.pathname === path) {
-						a.setAttribute('aria-current', 'page');
-						a.classList.add('active');
-					}
-				} catch (e) {
-					// href may be a hash or relative; last resort simple compare
-					if (href === path || href === ('.' + path)) {
-						a.setAttribute('aria-current', 'page');
-						a.classList.add('active');
-					}
-				}
-			}
-		});
-	}
-
-	// Run on DOM ready and when hash changes
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', setActiveMobileLink);
-	} else setActiveMobileLink();
-
-	window.addEventListener('hashchange', setActiveMobileLink);
-})();
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      toggleMenu();
+    }
+  });
+});

@@ -38,7 +38,6 @@
                 src = `./static/img/${src}`;
             }
         }
-        // Encode spaces safely (keep extension intact).
         if (src) src = src.split(' ').map(encodeURIComponent).join('%20');
 
         const slide = document.createElement('div');
@@ -51,13 +50,10 @@
         modalSlider.appendChild(slide);
     });
 
-    // Ensure fixed positioning so elements don't shift relative to scroll.
-    // (If your CSS already sets this, these are harmless overrides.)
     Object.assign(modalContainer.style, {position:'fixed', top:'0px', left:'0px', zIndex:'5000', pointerEvents:'none'});
     Object.assign(hoverCursor.style, {position:'fixed', top:'0px', left:'0px', zIndex:'5001', pointerEvents:'none'});
     Object.assign(hoverCursorLabel.style, {position:'fixed', top:'0px', left:'0px', zIndex:'5002'});
 
-    // Performance: use transform setters instead of layout-affecting left/top.
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const modalSetX = gsap.quickSetter(modalContainer, 'x', 'px');
     const modalSetY = gsap.quickSetter(modalContainer, 'y', 'px');
@@ -66,20 +62,36 @@
     const labelSetX = gsap.quickSetter(hoverCursorLabel, 'x', 'px');
     const labelSetY = gsap.quickSetter(hoverCursorLabel, 'y', 'px');
 
-    // Smooth trailing effect using a proxy object animated by GSAP.
+    function getScrollTransformY() {
+        const scroller = document.querySelector('#smooth-scroll');
+        if (!scroller) return 0;
+        const style = window.getComputedStyle(scroller);
+        const transform = style.transform || style.webkitTransform;
+        if (transform && transform !== 'none') {
+            const match = transform.match(/matrix\(([^)]+)\)/);
+            if (match) {
+                const parts = match[1].split(',');
+                const ty = parseFloat(parts[5] || parts[4] || '0');
+                return ty;
+            }
+        }
+        return 0;
+    }
+
     const proxy = {x:0, y:0};
     let targetX = 0, targetY = 0;
     const trailDuration = prefersReduced ? 0 : 0.5;
     gsap.ticker.add(() => {
-        // Ease towards target manually for fine-grain control (alternative to gsap.to each move).
-        proxy.x += (targetX - proxy.x) * 0.18; // smoothing factor
-        proxy.y += (targetY - proxy.y) * 0.18;
-        modalSetX(proxy.x - 40);
-        modalSetY(proxy.y - 40);
-        cursorSetX(proxy.x - 40);
-        cursorSetY(proxy.y - 40);
-        labelSetX(proxy.x - 40);
-        labelSetY(proxy.y - 40);
+        proxy.x += (targetX - proxy.x) * 0.05;
+        proxy.y += (targetY - proxy.y) * 0.02;
+        const scrollY = getScrollTransformY();
+    const yOffset = 550; 
+    modalSetX(proxy.x - 120);
+    modalSetY(proxy.y - 100 - scrollY + yOffset);
+    cursorSetX(proxy.x - 120);
+    cursorSetY(proxy.y - 120 - scrollY + yOffset);
+    labelSetX(proxy.x - 120);
+    labelSetY(proxy.y - 120 - scrollY + yOffset);
     });
 
     function showModal(){
@@ -106,19 +118,17 @@
 
     let lastClientX = 0, lastClientY = 0;
     function handlePointer(e){
-        // For touch events, clientX/Y exist on the first touch.
         const cx = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : lastClientX);
         const cy = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : lastClientY);
         lastClientX = cx; lastClientY = cy;
+        // Add scrollY to pointer Y so hover follows the actual document position
         targetX = cx;
-        targetY = cy;
+        targetY = cy + (window.scrollY || window.pageYOffset);
     }
     window.addEventListener('pointermove', handlePointer, {passive:true});
     window.addEventListener('touchmove', handlePointer, {passive:true});
 
-    // Re-sync on scroll to avoid drift if any scroll-based transform affects layout.
     window.addEventListener('scroll', () => {
-        // Force target to last known pointer position so smoothing continues from correct spot.
         targetX = lastClientX;
         targetY = lastClientY;
     }, {passive:true});

@@ -20,7 +20,7 @@
 
 <body class="antialiased text-white bg-gray-100">
 	<!-- Menu -->
-	<div class="btn-hamburger fixed top-8 right-14 z-[9999]">
+	<div class="btn-hamburger fixed top-8 right-14 z-[9999] hidden sm:block">
 		<div class="magnetic-button">
 			<svg id="hamburger" class="Header__toggle-svg" viewBox="0 0 60 40" role="button"
 				aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
@@ -41,15 +41,6 @@
 			<path id="menu-curve-path" fill="#111"></path>
 		</svg>
 
-		<div id="curveVariantControls" class="curve-variant-controls absolute left-2 top-2 hidden gap-2 z-[120]"
-			aria-hidden="true">
-			<button data-variant="subtle"
-				class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Subtle</button>
-			<button data-variant="pronounced"
-				class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Pronounced</button>
-			<button data-variant="extra"
-				class="curve-variant-btn bg-[rgba(255,255,255,0.06)] text-white px-2 py-1 text-xs rounded-md cursor-pointer">Extra</button>
-		</div>
 		<div class="mobile-menu-inner flex flex-col h-full pt-[15vh] pb-[10vh] px-[7.5vw] bg-[var(--color-dark)]">
 			<div class="mobile-menu-header pb-[18px]">
 				<span class="mobile-menu-title">Navigation</span>
@@ -64,7 +55,7 @@
 				<li><a href="#about"
 						class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">About</a>
 				</li>
-				<li><a href="#contact"
+				<li><a href="#footer"
 						class="mobile-menu-link flex items-center gap-4 text-4xl leading-tight text-white no-underline py-4">Contact</a>
 				</li>
 			</ul>
@@ -72,7 +63,7 @@
 	</nav>
 
 	<!-- Hero -->
-	<section class="rail relative h-screen w-full bg-gray-300">
+	<section class="rail relative h-screen w-full bg-[#e9ecef]">
 		<img src="./static/img/ultrawide-blue-3840x2160-19825.png" alt="hero-bg"
 			class="absolute inset-0 w-full h-full object-cover object-center" />
 		<!-- Top navigation -->
@@ -91,14 +82,13 @@
 		</div>
 
 		<div class="absolute inset-0 z-10 flex items-center justify-start">
-			<div class="absolute bottom-20 w-full overflow-hidden">
-				<div class="infinite-marquee whitespace-nowrap flex animate-infinite-scroll text-[18vw] md:text-[12vw] lg:text-[10vw] font-regular leading-[0.9] text-white opacity-95">
-					<span class="mx-4">Backend Developer -</span>
-					<span class="mx-4">Frontend Developer -</span>
-					<span class="mx-4">Backend Developer -</span>
-					<span class="mx-4">Frontend Developer -</span>
-					<span class="mx-4">Backend Developer -</span>
-					<span class="mx-4">Frontend Developer -</span>
+			<div class="absolute bottom-20 w-full">
+				<div
+					class="infinite-text-loop text-[18vw] md:text-[12vw] lg:text-[10vw] font-regular leading-[0.9] text-white opacity-95">
+					<span>Backend Developer -</span>
+					<span>Frontend Developer -</span>
+					<span>Backend Developer -</span>
+					<span>Frontend Developer -</span>
 				</div>
 			</div>
 		</div>
@@ -106,108 +96,120 @@
 	</section>
 
 	<!-- About Me -->
-	<section id="about"
-		class="about-intro text-gray-900 py-[var(--section-padding)] pb-[calc(var(--section-padding)*.33)]">
-		<div class="container flex flex-col sm:flex-row">
-			<div class="pb-10 sm:pr-[var(--gap-padding)]">
-				<h2
-					class="about-heading not-italic leading-[1.45] text-[clamp(1.55em,2.3vw,2.5em)] fade-on-scroll">
-					Helping brands to stand out in the digital era. Together we will set the new status quo. No
-					nonsense, always on the cutting edge.
-				</h2>
-			</div>
-			<div class="text-left sm:pl-[var(--gap-padding)]">
-				<p class="break-words fade-on-scroll fade-delay-1 mb-5 sm:mb-20">The combination of my passion for
-					design, code &amp; interaction positions me in a unique place in the web design world.</p>
-				<div class="flex justify-end">
-					<button class="about-circle fade-on-scroll fade-delay-2">
-						<p class="text-white">About me</p>
-					</button>
+	<div class="bg-[var(--color-background)]">
+		<section id="about"
+			class="about-intro flex justify-center text-gray-900 py-[var(--section-padding)] pb-[calc(var(--section-padding)*.33)] ">
+			<div class="container flex flex-col sm:flex-row">
+				<div class="pb-10 sm:pr-[var(--gap-padding)]">
+					<h2 class="about-heading not-italic leading-[1.45] text-[clamp(1.55em,2.3vw,2.5em)] fade-on-scroll">
+						Helping brands to stand out in the digital era. Together we will set the new status quo. No
+						nonsense, always on the cutting edge.
+					</h2>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Projects -->
-	<section class="container mx-auto max-w-[100em] px-[var(--container-padding)] text-gray-800 hidden lg:block">
-		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
-			data-index="0" data-src="./static/img/Nike Ecommerce.jpg" data-color="#8d99ae"
-			data-link="https://github.com/supaFrik/Nike-e-commerce-web-application"
-			href="https://github.com/supaFrik/Nike-e-commerce-web-application" target="_blank"
-			rel="noopener noreferrer">
-			<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">Nike Web</h2>
-			<p class="text-sm md:text-base fade-delay-2">Full-stack project.</p>
-		</a>
-		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
-			data-index="1" data-src="./static/img/todo.png" data-color="#edf2f4"
-			data-link="https://github.com/supaFrik/todo-list" href="https://github.com/supaFrik/todo-list"
-			target="_blank" rel="noopener noreferrer">
-			<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">To-do List</h2>
-			<p class="text-sm md:text-base fade-delay-2">OOP, SQL, CRUD, REST</p>
-		</a>
-		<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
-			data-index="2" data-src="./static/img/portfolio.png" data-color="#ef233c"
-			data-link="https://github.com/supaFrik/Portfolio" href="https://github.com/supaFrik/Portfolio"
-			target="_blank" rel="noopener noreferrer">
-			<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">Portfolio</h2>
-			<p class="text-sm md:text-base fade-delay-2">HTML, Tailwind CSS, GSAP animations, Vanilla JavaScript.</p>
-		</a>
-
-		<div id="hoverModalRoot">
-			<div class="modalContainer h-[350px] w-[400px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center"
-				id="modalContainer" aria-hidden="true">
-				<div class="modalSlider" id="modalSlider">
-					<!-- JS -->
-				</div>
-			</div>
-			<div class="cursor w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-light pointer-events-none"
-				id="hoverCursor"></div>
-			<div class="cursorLabel w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-semibold pointer-events-none bg-transparent flex items-center justify-center"
-				id="hoverCursorLabel">View</div>
-		</div>
-	</section>
-
-	<!-- Responsive Projects -->
-	<section class="project-row block lg:hidden py-0">
-		<div class="container grid grid-cols-1 md:grid-cols-2 gap-12">
-			<article class="project-card">
-				<div class="project-card_img">
-					<img src="./static/img/float-gallery/z7178029781654_b890980df74cdd4ea92f190c36ea663a.jpg"
-						alt="TWICE" class="w-full h-[50vh] object-cover" />
-				</div>
-				<div
-					class="project-card_content pt-6 w-full sm:pb-[calc(var(--section-padding)*1)] sm:px-[calc(var(--container-padding)*.25)]">
-					<h3
-						class="text-gray-600 font-medium text-[calc(clamp(1.75em,2.3vw,2.5em)*1.125)] lg:text-[initial]">
-						TWICE</h3>
-					<div
-						class="pt-4 flex items-center justify-between text-sm text-gray-600 border-t-2 border-t-gray-300">
-						<span>Interaction &amp; Development</span>
-						<span>2024</span>
+				<div class="text-left sm:pl-[var(--gap-padding)]">
+					<p class="break-words fade-on-scroll fade-delay-1 mb-5 sm:mb-20">The combination of my passion for
+						design, code &amp; interaction positions me in a unique place in the web design world.</p>
+					<div class="flex justify-end">
+						<button class="about-circle fade-on-scroll fade-delay-2">
+							<p class="text-white">About me</p>
+						</button>
 					</div>
 				</div>
-			</article>
+			</div>
+		</section>
 
-			<article class="project-card">
-				<div class="project-card_img">
-					<img src="./static/img/float-gallery/z7178029786814_a8a8db43f6e539adb94156c2c12f6ded.jpg"
-						alt="The Damai" class="w-full h-[50vh] object-cover" />
-				</div>
-				<div class="project-card_content pt-6">
-					<h3
-						class="text-gray-600 font-medium text-[calc(clamp(1.75em,2.3vw,2.5em)*1.125)] lg:text-[initial]">
-						The Damai</h3>
-					<div
-						class="pt-4 flex items-center justify-between text-sm text-gray-600 border-t-2 border-t-gray-300">
-						<span>Design &amp; Development</span>
-						<span>2024</span>
+		<!-- Projects -->
+		<section class="container mx-auto max-w-[100em] px-[var(--container-padding)] text-gray-800 hidden lg:block">
+
+			<!-- Nike -->
+			<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
+				data-index="0" data-src="./static/img/Nike Ecommerce.jpg" data-color="#8d99ae"
+				data-link="https://github.com/supaFrik/Nike-e-commerce-web-application"
+				href="https://github.com/supaFrik/Nike-e-commerce-web-application" target="_blank"
+				rel="noopener noreferrer">
+				<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">Nike Web</h2>
+				<p class="text-sm md:text-base fade-delay-2">Full-stack project.</p>
+			</a>
+
+			<!-- To-do List -->
+			<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
+				data-index="1" data-src="./static/img/todo.png" data-color="#edf2f4"
+				data-link="https://github.com/supaFrik/todo-list" href="https://github.com/supaFrik/todo-list"
+				target="_blank" rel="noopener noreferrer">
+				<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">To-do List</h2>
+				<p class="text-sm md:text-base fade-delay-2">OOP, SQL, CRUD, REST</p>
+			</a>
+
+			<!-- Portfolio -->
+			<a class="projects-card project-card cursor-pointer flex flex-col justify-between items-start border-t-2 border-gray-300 pt-8 pb-8 gap-4 md:flex-row md:items-center md:gap-0 md:pt-12 md:pb-12 hover:opacity-40 fade-on-scroll"
+				data-index="2" data-src="./static/img/portfolio.png" data-color="#ef233c"
+				data-link="https://github.com/supaFrik/Portfolio" href="https://github.com/supaFrik/Portfolio"
+				target="_blank" rel="noopener noreferrer">
+				<h2 class="fade-delay-1 font-semibold text-base sm:text-4xl">Portfolio</h2>
+				<p class="text-sm md:text-base fade-delay-2">HTML, Tailwind CSS, GSAP animations, Vanilla JavaScript.
+				</p>
+			</a>
+
+			<!-- Hover Modal -->
+			<div id="hoverModalRoot">
+				<script src="./static/js/parallax-gallery.js" defer></script>
+				<div class="modalContainer h-[350px] w-[400px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center"
+					id="modalContainer" aria-hidden="true">
+					<div class="modalSlider" id="modalSlider">
+						<!-- JS -->
 					</div>
 				</div>
-			</article>
-		</div>
-	</section>
+				<div class="cursor w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-light pointer-events-none"
+					id="hoverCursor"></div>
+				<div class="cursorLabel w-[80px] h-[80px] rounded-full absolute z-[50] text-[14px] font-semibold pointer-events-none bg-transparent flex items-center justify-center"
+					id="hoverCursorLabel">View</div>
+			</div>
+		</section>
 
-	<!-- Skills
+		<!-- Responsive Projects -->
+		<section class="project-row block lg:hidden py-0">
+			<div class="container grid grid-cols-1 md:grid-cols-2 gap-12">
+
+				<!-- Project 1 -->
+				<article class="project-card">
+					<div class="project-card_img">
+						<img src="./static/img/portfolio.png"
+							alt="TWICE" class="w-full h-[40vh] object-cover" />
+					</div>
+					<div
+						class="project-card_content pt-6 w-full sm:pb-[calc(var(--section-padding)*1)] sm:px-[calc(var(--container-padding)*.25)]">
+						<h3
+							class="text-gray-600 font-medium text-[calc(clamp(1.75em,2.3vw,2.5em)*1.125)] lg:text-[initial] uppercase">
+							Portfolio</h3>
+						<div
+							class="pt-4 flex items-center justify-between text-sm text-gray-600 border-t-2 border-t-gray-300 capitalize">
+							<span>Frontend Development</span>
+							<span>2024</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- Project 2 -->
+				<article class="project-card">
+					<div class="project-card_img">
+						<img src="./static/img/Nike Ecommerce.jpg"
+							alt="The Damai" class="w-full h-[40vh] object-cover" />
+					</div>
+					<div class="project-card_content pt-6">
+						<h3
+							class="text-gray-600 font-medium text-[calc(clamp(1.75em,2.3vw,2.5em)*1.125)] lg:text-[initial] capitalize">
+							Nike Web</h3>
+						<div
+							class="pt-4 flex items-center justify-between text-sm text-gray-600 border-t-2 border-t-gray-300 capitalize">
+							<span>Design & Development</span>
+							<span>2024</span>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<!-- Skills
 		<section id="skills-projects" class="py-12 md:py-24 bg-white text-gray-900">
 			<h2 class="text-sm md:text-lg font-bold px-4 md:px-[4%] uppercase">• tech stack</h2>
 			<div class="projects-scroll border-t border-[rgba(183,171,152,0.25)]  mx-auto" aria-label="Highlighted projects">
@@ -333,48 +335,154 @@
 				</div>
 		</section> -->
 
-	<!-- Tech stack Section -->
-	<section class="tech-stack min-h-screen py-[var(--section-padding)] pb-[calc(var(--section-padding)*.33)] bg-white">
-		<div class="container">
-			<div class="flex flex-col gap-16">
-				<div class="text-left">
-					<h2 class="text-sm uppercase tracking-widest mb-2 text-black font-light">TECH STACK</h2>
-				</div>
-				<div class="tech_container grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12">
-					<div>
-						<p class="motto text-black text-2xl md:text-3xl lg:text-4xl leading-[1.3] font-light">
-							Creating digital products from scratch is a team effort. Each of the specialists can bring something new to the project, but they must all work as a single mechanism. Well-established processes and a well-coordinated team are the main keys to success.
-						</p>
+		<!-- Tech stack Section -->
+		<section class="tech-stack min-h-screen flex justify-center">
+			<div class="container">
+				<div class="flex flex-col gap-16">
+					<div class="text-left">
+						<h2 class="text-sm uppercase tracking-widest mb-2 text-black font-light">TECH STACK</h2>
 					</div>
-					<div class="flex flex-wrap gap-3 content-start">
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JAVA</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">MYSQL</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">SPRING BOOT</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JSP</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">TAILWIND CSS</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">GIT</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">REST API</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">DOCKER</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">GITHUB</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JAVASCRIPT</div>
-						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">+ MORE</div>
+					<div class="tech_container grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12">
+						<!-- Motto -->
+						<div>
+							<p class="motto text-black text-2xl md:text-3xl lg:text-4xl leading-[1.3] font-light">
+								Creating digital products from scratch is a team effort. Each of the specialists can
+								bring something new to the project, but they must all work as a single mechanism.
+								Well-established processes and a well-coordinated team are the main keys to success.
+							</p>
+						</div>
+
+						<!-- Tech tags -->
+						<div class="flex flex-wrap gap-3 content-start">
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								JAVA</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								MYSQL</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								SPRING BOOT</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								JSP</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								TAILWIND CSS</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								GIT</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								REST API</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								DOCKER</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								GITHUB</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								JAVASCRIPT</div>
+							<div
+								class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">
+								+ MORE</div>
+						</div>
+					</div>
+					<div class="icons">
+						<img src="./static/img/icons/Star stripe.png" alt="Hehe"
+							class="w-[3rem] h-[3rem] sm:w-[4.4rem] sm:h-[4.4rem]">
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<script src="./static/js/horizontal-infinite-text-loop.js" defer></script>
-	<!-- <script src="./static/js/smooth-scroll.js" defer></script> -->
-	<script src="./static/js/about-staggered-reveal.js" defer></script>
-	<script src="./static/js/menu-curve-morph.js" defer></script>
-	<script src="./static/js/burger-menu.js" defer></script>
-	<script src="./static/js/magnetic-button.js" defer></script>
-	<script src="./static/js/active-nav-indicator.js" defer></script>
-	<script src="./static/js/project-hover.js" defer></script>
-	<script src="./static/js/float-gallery.js" defer></script>
-	<script src="./static/js/projects-clip-scroll.js" defer></script>
-	<script src="./static/js/char-reveal.js" defer></script>
-	<script src="./static/js/fade-on-scroll.js" defer></script>
+		</section>
+	</div>
+
+	<section>
+		<section id="contact" class="min-h-screen flex justify-center bg-[var(--color-dark)]">
+			<div class="w-full flex flex-col md:flex-col md:justify-between gap-12 md:gap-0 pt-[var(--section-padding)]">
+				<div class="container w-full flex flex-col justify-start gap-4 md:gap-8">
+					<div class="flex flex-col gap-4 pb-12 relative">
+						<span class="contact-header">
+							<img src="./static/img/float-gallery/z7178029833551_9551eeb3b4345be03e05f11dfdb17015.jpg"
+								alt="logo" class="profile-picture rounded-full inline-block mr-2 object-cover">
+							Let’s work
+						</span>
+						<span class="contact-header">together</span>
+						<a href="mailto:tqv2005business@gmail.com"
+							class="magnetic-button contact-btn absolute right-0 translate-x-[-15%] translate-y-[108%] z-20 bg-[#4d6aff] text-white rounded-full text-lg font-medium shadow-lg hover:bg-[#3550c7] transition-colors">Get
+							in touch</a>
+					</div>
+					<div class="stripe bg-white/20 h-[0.5px] w-full"></div>
+					<div class="flex flex-col lg:flex-row w-full sm:w-[70%] gap-4 pt-[3rem]">
+						<a href="mailto:info@dennissnellenberg.com"
+							class="text-center w-full rounded-full border border-white/20 p-6 text-base md:text-lg hover:bg-white hover:text-black transition-colors">tqv2005business@gmail.com</a>
+						<a href="tel:+84 394 497 187"
+							class="text-center w-full rounded-full border border-white/20 p-6 text-base md:text-lg hover:bg-white hover:text-black transition-colors">+84
+							394 497 187</a>
+					</div>
+				</div>
+
+				<div>
+					<div class="bottom-footer flex flex-col sm:flex-row justify-between">
+						<div class="flex flex-row gap-12">
+							<!-- Version -->
+							<div class="flex flex-col items-start gap-4">
+								<span class="text-xs text-gray-400">VERSION</span>
+								<span class="font-semibold text-base">2025 © Edition</span>
+							</div>
+							<!-- Local Time -->
+							<div class="flex flex-col items-start gap-4">
+								<span class="text-xs text-gray-400">LOCAL TIME</span>
+								<span id="footer-time" class="font-semibold text-base">--:-- AM GMT+1</span>
+							</div>
+						</div>
+						<!-- Socials -->
+						<div class="flex flex-col gap-4">
+							<span class="text-xs text-gray-400">SOCIALS</span>
+							<div class="flex flex-wrap sm:flex-nowrap items-center gap-4">
+								<a href="https://www.awwwards.com/" target="_blank" rel="noopener"
+									class="hover:text-white w-1/3 lg:w-1/4">Awwwards</a>
+								<a href="https://www.instagram.com/" target="_blank" rel="noopener"
+									class="hover:text-white w-1/3 lg:w-1/4">Instagram</a>
+								<a href="https://twitter.com/" target="_blank" rel="noopener"
+									class="hover:text-white w-1/3 lg:w-1/4">Twitter</a>
+								<a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+									class="hover:text-white w-1/3 lg:w-1/4">LinkedIn</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script>
+				function updateFooterTime() {
+					const now = new Date();
+					let hours = now.getHours();
+					let minutes = now.getMinutes();
+					const ampm = hours >= 12 ? 'PM' : 'AM';
+					hours = hours % 12;
+					hours = hours ? hours : 12; // the hour '0' should be '12'
+					minutes = minutes < 10 ? '0' + minutes : minutes;
+					const timeString = `${hours}:${minutes} ${ampm} GMT+1`;
+					document.getElementById('footer-time').textContent = timeString;
+				}
+				updateFooterTime();
+				setInterval(updateFooterTime, 60000);
+			</script>
+		</footer>
+
+		<script src="./static/js/horizontal-infinite-text-loop.js" defer></script>
+		<script src="./static/js/about-staggered-reveal.js" defer></script>
+		<script src="./static/js/menu-curve-morph.js" defer></script>
+		<script src="./static/js/burger-menu.js" defer></script>
+		<script src="./static/js/magnetic-button.js" defer></script>
+		<script src="./static/js/active-nav-indicator.js" defer></script>
+		<script src="./static/js/project-hover.js" defer></script>
+		<script src="./static/js/float-gallery.js" defer></script>
+		<script src="./static/js/projects-clip-scroll.js" defer></script>
+		<script src="./static/js/char-reveal.js" defer></script>
+		<script src="./static/js/fade-on-scroll.js" defer></script>
+		<script src="./static/js/parallax-scroll.js" defer></script>
 </body>
 
 </html>

@@ -11,7 +11,6 @@
 
 	const toggle = () => {
 		const active = hamburger.classList.toggle('is-active');
-        btnWrapper.classList.toggle('active', active);
 		hamburger.setAttribute('aria-expanded', active ? 'true' : 'false');
 
 		if (mobileMenu) {
@@ -30,15 +29,6 @@
 				} else showBtn();
 			}
 		}
-
-        // Animate slide up with GSAP if available
-        if (window.gsap && active) {
-            window.gsap.fromTo(
-                btnWrapper,
-                { y: 40, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
-            );
-        }
 	};
 
 	const showBtn = () => {

@@ -1,4 +1,5 @@
 :root {
+    --color-background: #f8f9fa;
     --color-dark: #1C1D20;
     --color-dark-dark: #141517;
     --color-light: #FFFFFF;
@@ -37,11 +38,10 @@
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none;    /* Firefox */
-    overflow-y: scroll;       /* Keep scroll functionality */
+    overflow-y: scroll;       
   }
 }
 
-/* Global scrollbar hiding for html and body */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
@@ -61,8 +61,18 @@ body {
     }
 }
 
+@media screen and (max-width: 540px) {
+  :root {
+      --container-padding: 4vw;
+  }
+}
+
 body {
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+.container {
+    padding: 0 calc(var(--container-padding) * 2);
 }
 
 .projects-card,

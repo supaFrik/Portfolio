@@ -1,4 +1,3 @@
-// Animates an SVG's viewBox from "0 0 400 100" to "0 0 200 100" on load
 (function () {
     'use strict';
 
@@ -48,10 +47,8 @@
         var initial = parseViewBox(svg.getAttribute('viewBox')) || [0, 0, 400, 100];
         var target = [0, 0, 200, 100];
 
-        // Only animate when the current width is larger than the target
         if (initial[2] <= target[2]) return;
 
-        // give a small delay so other initial layout work finishes
         window.setTimeout(function () {
             animateViewBox(svg, initial, target, { duration: 700 });
         }, 120);

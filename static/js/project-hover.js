@@ -1,5 +1,4 @@
 (function(){
-    // Abort early if GSAP isn't present.
     if(!window.gsap){
         console.warn('[project-hover] GSAP not found on window – effect disabled.');
         return;
@@ -21,17 +20,14 @@
         return;
     }
 
-    // If parent section is hidden (e.g. Tailwind `hidden lg:block` on small screens) surface a hint.
     if(getComputedStyle(modalContainer.parentElement).display === 'none'){
         console.info('[project-hover] Hover modal root is currently display:none (likely due to responsive classes). Hover effect will be invisible on this breakpoint.');
     }
 
-    // Build slides from project cards.
     projects.forEach((el, i) => {
         let src = el.getAttribute('data-src') || '';
         const color = el.getAttribute('data-color') || '#fff';
 
-        // Basic relative path inference if a bare filename was provided.
         if (src && !/^(https?:)?\/\//.test(src) && !src.startsWith('/')) {
             const hasPathParts = src.includes('/') || src.startsWith('static/') || src.startsWith('img/');
             if(!hasPathParts){
@@ -62,36 +58,18 @@
     const labelSetX = gsap.quickSetter(hoverCursorLabel, 'x', 'px');
     const labelSetY = gsap.quickSetter(hoverCursorLabel, 'y', 'px');
 
-    function getScrollTransformY() {
-        const scroller = document.querySelector('#smooth-scroll');
-        if (!scroller) return 0;
-        const style = window.getComputedStyle(scroller);
-        const transform = style.transform || style.webkitTransform;
-        if (transform && transform !== 'none') {
-            const match = transform.match(/matrix\(([^)]+)\)/);
-            if (match) {
-                const parts = match[1].split(',');
-                const ty = parseFloat(parts[5] || parts[4] || '0');
-                return ty;
-            }
-        }
-        return 0;
-    }
-
     const proxy = {x:0, y:0};
     let targetX = 0, targetY = 0;
     const trailDuration = prefersReduced ? 0 : 0.5;
     gsap.ticker.add(() => {
-        proxy.x += (targetX - proxy.x) * 0.05;
-        proxy.y += (targetY - proxy.y) * 0.02;
-        const scrollY = getScrollTransformY();
-    const yOffset = 550; 
-    modalSetX(proxy.x - 120);
-    modalSetY(proxy.y - 100 - scrollY + yOffset);
-    cursorSetX(proxy.x - 120);
-    cursorSetY(proxy.y - 120 - scrollY + yOffset);
-    labelSetX(proxy.x - 120);
-    labelSetY(proxy.y - 120 - scrollY + yOffset);
+        proxy.x += (targetX - proxy.x) * 0.05; 
+        proxy.y += (targetY - proxy.y) * 0.05;
+        modalSetX(proxy.x - 50);
+        modalSetY(proxy.y - 30);
+        cursorSetX(proxy.x - 50);
+        cursorSetY(proxy.y - 30);
+        labelSetX(proxy.x - 50);
+        labelSetY(proxy.y - 30);
     });
 
     function showModal(){
@@ -121,9 +99,8 @@
         const cx = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : lastClientX);
         const cy = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : lastClientY);
         lastClientX = cx; lastClientY = cy;
-        // Add scrollY to pointer Y so hover follows the actual document position
         targetX = cx;
-        targetY = cy + (window.scrollY || window.pageYOffset);
+        targetY = cy;
     }
     window.addEventListener('pointermove', handlePointer, {passive:true});
     window.addEventListener('touchmove', handlePointer, {passive:true});

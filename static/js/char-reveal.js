@@ -10,7 +10,7 @@
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) {
     console.debug('[char-reveal] prefers-reduced-motion: skipping');
-    return; // skip heavy animations
+    return; 
   }
 
   function splitText(node){
@@ -51,7 +51,6 @@
 
     els.forEach(el => splitText(el));
 
-    // reveal on scroll into view with simple IntersectionObserver
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

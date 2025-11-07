@@ -17,7 +17,6 @@
 
 	let windowHeight = updateSVGDimensions();
 
-	// Path definitions matching the React code
 	const initialPath = `M100 0 L100 ${windowHeight} Q-100 ${windowHeight/2} 100 0`;
 	const targetPath = `M100 0 L100 ${windowHeight} Q100 ${windowHeight/2} 100 0`;
 
@@ -32,13 +31,12 @@
 
 	let rafId = null;
 	let start = null;
-	let duration = 1000; // 1s for enter, 800ms for exit
+	let duration = 1000; 
 	
 	// Cubic bezier easing [0.76, 0, 0.24, 1]
 	let easing = function (t) { 
 		const x1 = 0.76, y1 = 0, x2 = 0.24, y2 = 1;
-		// Simplified cubic-bezier approximation
-		return t * t * (3 - 2 * t); // smooth ease in-out as approximation
+		return t * t * (3 - 2 * t); 
 	};
 
 	function animateTo(targetOpen, onComplete) {
@@ -48,7 +46,7 @@
 		windowHeight = updateSVGDimensions();
 		const fromPath = targetOpen ? initialPath : targetPath;
 		const toPath = targetOpen ? targetPath : initialPath;
-		const animDuration = targetOpen ? 1000 : 800; // enter: 1s, exit: 0.8s
+		const animDuration = targetOpen ? 800 : 800; // enter: 1s, exit: 0.8s
 
 		if (fromPath === toPath) {
 			if (onComplete) onComplete();
@@ -90,10 +88,8 @@
 
 	observer.observe(menu, { attributes: true, attributeFilter: ['class'] });
 
-	// Set initial path (exit state)
 	path.setAttribute('d', initialPath);
 
-	// Handle window resize
 	window.addEventListener('resize', () => {
 		windowHeight = updateSVGDimensions();
 		const isOpen = menu.classList.contains('open');

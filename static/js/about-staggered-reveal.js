@@ -1,11 +1,10 @@
 	if (window.gsap && window.ScrollTrigger) {
 				gsap.registerPlugin(ScrollTrigger);
-				const heading = document.querySelector('.about-heading');
+				const heading = document.querySelector('.about-heading, .motto');
 				if (heading) {
 					const text = heading.textContent.trim();
 					const words = text.split(/\s+/).map(w => {
 						const span = document.createElement('span');
-						// add about-word plus Tailwind spacing utility
 						span.className = 'about-word inline-block mr-1';
 						span.textContent = w.replace(/\s+$/,'');
 						return span;

@@ -8,18 +8,9 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-	<!-- GSAP-based smooth scroller init (local) -->
-	<script src="./static/js/gsap-smooth-scroll.js" defer></script>
 	<script src="https://unpkg.com/flubber@0.4.2/build/flubber.min.js"></script>
 	<link rel="stylesheet" href="static/css/base.css" />
 	<link rel="stylesheet" href="static/css/style.css" />
-	<script src="./static/js/horizontal-infinite-text-loop.js" defer></script>
-	<script src="./static/js/smooth-scroll.js" defer></script>
-	<script src="./static/js/about-staggered-reveal.js" defer></script>
-	<script src="./static/js/menu-curve-morph.js" defer></script>
-	<script src="./static/js/burger-menu.js" defer></script>
-	<script src="./static/js/magnetic-button.js" defer></script>
-	<script src="./static/js/active-nav-indicator.js" defer></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -28,7 +19,6 @@
 </head>
 
 <body class="antialiased text-white bg-gray-100">
-	<div id="smooth-scroll">
 	<!-- Menu -->
 	<div class="btn-hamburger fixed top-8 right-14 z-[9999]">
 		<div class="magnetic-button">
@@ -101,13 +91,14 @@
 		</div>
 
 		<div class="absolute inset-0 z-10 flex items-center justify-start">
-			<div class="absolute bottom-20 marquee-wrap w-full">
-				<div
-					class="marquee-track text-[18vw] md:text-[12vw] lg:text-[10vw] font-regular leading-[0.9] text-white opacity-95">
-					<span>Backend Developer -</span>
-					<span>Frontend Developer -</span>
-					<span>Backend Developer -</span>
-					<span>Frontend Developer -</span>
+			<div class="absolute bottom-20 w-full overflow-hidden">
+				<div class="infinite-marquee whitespace-nowrap flex animate-infinite-scroll text-[18vw] md:text-[12vw] lg:text-[10vw] font-regular leading-[0.9] text-white opacity-95">
+					<span class="mx-4">Backend Developer -</span>
+					<span class="mx-4">Frontend Developer -</span>
+					<span class="mx-4">Backend Developer -</span>
+					<span class="mx-4">Frontend Developer -</span>
+					<span class="mx-4">Backend Developer -</span>
+					<span class="mx-4">Frontend Developer -</span>
 				</div>
 			</div>
 		</div>
@@ -347,7 +338,7 @@
 		<div class="container">
 			<div class="flex flex-col gap-16">
 				<div class="text-left">
-					<h2 class="text-sm uppercase tracking-widest mb-2 text-black font-light">ART DIRECTION</h2>
+					<h2 class="text-sm uppercase tracking-widest mb-2 text-black font-light">TECH STACK</h2>
 				</div>
 				<div class="tech_container grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12">
 					<div>
@@ -366,18 +357,22 @@
 						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">DOCKER</div>
 						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">GITHUB</div>
 						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">JAVASCRIPT</div>
+						<div class="tech-tag text-black px-6 py-3 border-2 border-black rounded-full text-sm font-medium uppercase tracking-wider hover:bg-black hover:text-white transition-colors duration-300">+ MORE</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	</div><!-- /#smooth-scroll -->
-
+	<script src="./static/js/horizontal-infinite-text-loop.js" defer></script>
+	<!-- <script src="./static/js/smooth-scroll.js" defer></script> -->
+	<script src="./static/js/about-staggered-reveal.js" defer></script>
+	<script src="./static/js/menu-curve-morph.js" defer></script>
+	<script src="./static/js/burger-menu.js" defer></script>
+	<script src="./static/js/magnetic-button.js" defer></script>
+	<script src="./static/js/active-nav-indicator.js" defer></script>
 	<script src="./static/js/project-hover.js" defer></script>
 	<script src="./static/js/float-gallery.js" defer></script>
 	<script src="./static/js/projects-clip-scroll.js" defer></script>
-	<script src="./static/js/hover-clip.js" defer></script>
 	<script src="./static/js/char-reveal.js" defer></script>
 	<script src="./static/js/fade-on-scroll.js" defer></script>
 </body>
